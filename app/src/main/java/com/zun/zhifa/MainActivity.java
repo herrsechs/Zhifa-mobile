@@ -1,5 +1,6 @@
 package com.zun.zhifa;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +48,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        GridView gridView = (GridView)findViewById(R.id.main_grid_view);
+        gridView.setAdapter(new ImageAdapter(this));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -97,5 +114,39 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public class ImageAdapter extends BaseAdapter {
+        private Context mContext;
+        public ImageAdapter(Context c){
+            mContext = c;
+        }
+        public int getCount(){
+            return mThumbIds.length;
+        }
+        public Object getItem(int position){
+            return null;
+        }
+        public long getItemId(int position){
+            return 0;
+        }
+        public View getView(int position, View convertView, ViewGroup parent){
+            ImageView imageView;
+            if(convertView == null){
+                imageView = new ImageView(mContext);
+                imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setPadding(8, 8, 8, 8);
+            }else{
+                imageView = (ImageView)convertView;
+            }
+            imageView.setImageResource(mThumbIds[position]);
+            return imageView;
+        }
+        private Integer[] mThumbIds = {
+                R.drawable.steam_city, R.drawable.steam_dragon,
+                R.drawable.steam_floating, R.drawable.steam_nightcity,
+                R.drawable.steam_wale
+        };
     }
 }
