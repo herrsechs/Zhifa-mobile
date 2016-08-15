@@ -1,9 +1,14 @@
 package com.zun.zhifa;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +29,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +57,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        GridView gridView = (GridView)findViewById(R.id.main_grid_view);
-        gridView.setAdapter(new ImageAdapter(this));
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+        mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
+        mLayoutManager = new GridLayoutManager(this, 2);
+
     }
 
     @Override
@@ -116,37 +119,63 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public class ImageAdapter extends BaseAdapter {
+    public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
         private Context mContext;
         public ImageAdapter(Context c){
             mContext = c;
         }
-        public int getCount(){
+        public int getItemCount(){
             return mThumbIds.length;
         }
-        public Object getItem(int position){
-            return null;
-        }
+
         public long getItemId(int position){
-            return 0;
+            return mThumbIds[position];
         }
-        public View getView(int position, View convertView, ViewGroup parent){
-            ImageView imageView;
-            if(convertView == null){
-                imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
-            }else{
-                imageView = (ImageView)convertView;
-            }
-            imageView.setImageResource(mThumbIds[position]);
-            return imageView;
+
+        public ImageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_image_card_view, parent, false);
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int imgWidth = displayMetrics.widthPixels / 2;
+            v.setLayoutParams(new RecyclerView.LayoutParams(imgWidth, imgWidth));
+
+            ViewHolder vh = new ViewHolder(v);
+            return vh;
         }
+
+        public void onBindViewHolder(ViewHolder holder, int position){
+
+        }
+
+//        public View getView(int position, View convertView, ViewGroup parent){
+//            ImageView imageView;
+//            if(convertView == null){
+//                DisplayMetrics displayMetrics = new DisplayMetrics();
+//                ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//                int imgWidth = displayMetrics.widthPixels / 2;
+//                imageView = new ImageView(mContext);
+//                imageView.setLayoutParams(new GridView.LayoutParams(imgWidth, imgWidth));
+//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                imageView.setPadding(0, 0, 0, 0);
+//            }else{
+//                imageView = (ImageView)convertView;
+//            }
+//            imageView.setImageResource(mThumbIds[position]);
+//            return imageView;
+//        }
         private Integer[] mThumbIds = {
-                R.drawable.steam_city, R.drawable.steam_dragon,
-                R.drawable.steam_floating, R.drawable.steam_nightcity,
-                R.drawable.steam_wale
+                R.drawable.res1,
+                R.drawable.res2,
+                R.drawable.res3,
+                R.drawable.res4,
+                R.drawable.res5
         };
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public ViewHolder(View v){
+                super(v);
+            }
+        }
     }
 }
