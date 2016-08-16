@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,12 +33,19 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private int deviceWidth;
+    private int deviceHeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        deviceWidth = displayMetrics.widthPixels;
+        deviceHeight = displayMetrics.heightPixels;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,18 +56,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
         mLayoutManager = new GridLayoutManager(this, 2);
-
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new ImageAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -134,18 +144,17 @@ public class MainActivity extends AppCompatActivity
 
         public ImageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_image_card_view, parent, false);
-
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int imgWidth = displayMetrics.widthPixels / 2;
-            v.setLayoutParams(new RecyclerView.LayoutParams(imgWidth, imgWidth));
-
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+            int cardViewWidth, cardViewHeight;
+            cardViewWidth = cardViewHeight = deviceWidth / 2;
+            v.setLayoutParams(new RecyclerView.LayoutParams(cardViewWidth, cardViewHeight));
+            return new ViewHolder(v);
         }
 
         public void onBindViewHolder(ViewHolder holder, int position){
-
+            holder.imageView.setImageResource(mThumbIds[position]);
+//            int imgWidth = deviceWidth / 2;
+//            int imgHeight = imgWidth;
+            //holder.imageView.setLayoutParams(new FrameLayout.LayoutParams(imgWidth, imgHeight));
         }
 
 //        public View getView(int position, View convertView, ViewGroup parent){
@@ -173,8 +182,10 @@ public class MainActivity extends AppCompatActivity
         };
 
         public class ViewHolder extends RecyclerView.ViewHolder {
+            private ImageView imageView;
             public ViewHolder(View v){
                 super(v);
+                this.imageView = (ImageView)v.findViewById(R.id.main_card_image_view);
             }
         }
     }
