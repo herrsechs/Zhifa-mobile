@@ -30,9 +30,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private int deviceWidth;
     private int deviceHeight;
     @Override
@@ -65,10 +62,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
-        mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new ImageAdapter(this);
+        RecyclerView.Adapter mAdapter = new ImageAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
