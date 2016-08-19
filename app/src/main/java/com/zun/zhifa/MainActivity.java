@@ -149,27 +149,8 @@ public class MainActivity extends AppCompatActivity
 
         public void onBindViewHolder(ViewHolder holder, int position){
             holder.imageView.setImageResource(mThumbIds[position]);
-//            int imgWidth = deviceWidth / 2;
-//            int imgHeight = imgWidth;
-            //holder.imageView.setLayoutParams(new FrameLayout.LayoutParams(imgWidth, imgHeight));
         }
 
-//        public View getView(int position, View convertView, ViewGroup parent){
-//            ImageView imageView;
-//            if(convertView == null){
-//                DisplayMetrics displayMetrics = new DisplayMetrics();
-//                ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-//                int imgWidth = displayMetrics.widthPixels / 2;
-//                imageView = new ImageView(mContext);
-//                imageView.setLayoutParams(new GridView.LayoutParams(imgWidth, imgWidth));
-//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                imageView.setPadding(0, 0, 0, 0);
-//            }else{
-//                imageView = (ImageView)convertView;
-//            }
-//            imageView.setImageResource(mThumbIds[position]);
-//            return imageView;
-//        }
         private Integer[] mThumbIds = {
                 R.drawable.res1,
                 R.drawable.res2,
