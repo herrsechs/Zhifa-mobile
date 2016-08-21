@@ -4,20 +4,43 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_card_view"
         android:layout_gravity="center"
-        android:layout_width="400dp"
-        android:layout_height="600dp"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
         card_view:cardCornerRadius="4dp"
         >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/launcher"
-            android:id="@+id/main_card_image_view"
-            android:contentDescription="@string/main_activity_image_view_desc"/>
-    </RelativeLayout>
-
+            android:paddingBottom="10dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/launcher"
+                android:id="@+id/main_card_image_view"
+                android:contentDescription="@string/main_activity_image_view_desc"/>
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/delete"
+                android:id="@+id/main_delete_btn"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/main_delete_btn_desc"
+                android:tint="@color/background_material_dark"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentBottom="true" />
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/heart"
+                android:id="@+id/main_favor_btn"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/main_favor_btn_desc"
+                android:tint="@color/background_material_light"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="20dp"
+                android:layout_alignTop="@+id/main_delete_btn"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 </android.support.v7.widget.CardView>

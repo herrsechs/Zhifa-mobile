@@ -25,6 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -52,12 +53,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
-//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -134,6 +129,8 @@ public class MainActivity extends AppCompatActivity
         public int getItemCount(){
             return mThumbIds.length;
         }
+        public int cardViewWidth;
+        public int cardViewHeight;
 
         public long getItemId(int position){
             return mThumbIds[position];
@@ -141,8 +138,8 @@ public class MainActivity extends AppCompatActivity
 
         public ImageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_image_card_view, parent, false);
-            int cardViewWidth, cardViewHeight;
-            cardViewWidth = cardViewHeight = deviceWidth / 2;
+            cardViewWidth = deviceWidth / 2;
+            cardViewHeight = (int)(cardViewWidth * 1.3);
             v.setLayoutParams(new RecyclerView.LayoutParams(cardViewWidth, cardViewHeight));
             return new ViewHolder(v);
         }
@@ -161,9 +158,22 @@ public class MainActivity extends AppCompatActivity
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             private ImageView imageView;
+            private ImageButton favorBtn;
+            private ImageButton deleteBtn;
+
             public ViewHolder(View v){
                 super(v);
                 this.imageView = (ImageView)v.findViewById(R.id.main_card_image_view);
+                this.favorBtn = (ImageButton)v.findViewById(R.id.main_favor_btn);
+                this.deleteBtn = (ImageButton)v.findViewById(R.id.main_delete_btn);
+
+                int imgWidth, imgHeight;
+                imgWidth = imgHeight = cardViewWidth;
+                this.imageView.setLayoutParams(new RelativeLayout.LayoutParams(imgWidth, imgHeight));
+//                int btnWidth, btnHeight;
+//                btnWidth = btnHeight = (int)(cardViewHeight * 0.2);
+//                this.favorBtn.setLayoutParams(new RelativeLayout.LayoutParams(btnWidth, btnHeight));
+//                this.deleteBtn.setLayoutParams(new RelativeLayout.LayoutParams(btnWidth, btnHeight));
             }
         }
     }
