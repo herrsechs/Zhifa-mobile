@@ -6,6 +6,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="main_activity_image_view_desc">发型图片</string>
-    <string name="main_favor_btn_desc">收藏</string>
-    <string name="main_delete_btn_desc">删除</string>
+    <string name="image_detail_image_view_desc">发型图片</string>
+    <string name="favor_btn_desc">收藏</string>
+    <string name="delete_btn_desc">删除</string>
 </resources>

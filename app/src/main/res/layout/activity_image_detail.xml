@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/launcher"
+        android:id="@+id/image_detail_image_view"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/image_detail_image_view_desc"/>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/image_detail_delete_btn"
+        android:contentDescription="@string/delete_btn_desc"
+        android:src="@drawable/delete"
+        android:scaleType="fitXY"
+        android:tint="@color/background_material_dark"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/image_detail_image_view"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="41dp" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/image_detail_favor_btn"
+        android:contentDescription="@string/favor_btn_desc"
+        android:src="@drawable/heart"
+        android:scaleType="fitXY"
+        android:tint="@color/background_material_light"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="46dp"
+        android:layout_below="@+id/image_detail_image_view"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
