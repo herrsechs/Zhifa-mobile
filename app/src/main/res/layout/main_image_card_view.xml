@@ -18,6 +18,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/launcher"
                 android:id="@+id/main_card_image_view"
+                android:transitionName="@string/haircut_img_trans"
                 android:contentDescription="@string/main_activity_image_view_desc"/>
             <ImageButton
                 android:layout_width="25dp"
@@ -25,6 +26,7 @@
                 android:src="@drawable/delete"
                 android:id="@+id/main_delete_btn"
                 android:scaleType="fitXY"
+                android:transitionName="@string/del_btn_trans"
                 android:contentDescription="@string/delete_btn_desc"
                 android:tint="@color/background_material_dark"
                 android:background="@android:color/transparent"
@@ -36,6 +38,7 @@
                 android:src="@drawable/heart"
                 android:id="@+id/main_favor_btn"
                 android:scaleType="fitXY"
+                android:transitionName="@string/favor_btn_trans"
                 android:contentDescription="@string/favor_btn_desc"
                 android:tint="@color/background_material_light"
                 android:background="@android:color/transparent"
