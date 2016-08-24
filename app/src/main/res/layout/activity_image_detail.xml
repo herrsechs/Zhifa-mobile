@@ -6,36 +6,86 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/launcher"
+        android:src="@drawable/res1"
         android:id="@+id/image_detail_image_view"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/image_detail_image_view_desc"/>
+        android:contentDescription="@string/image_detail_image_view_desc"
+        android:layout_marginTop="47dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/image_detail_delete_btn"
         android:contentDescription="@string/delete_btn_desc"
         android:src="@drawable/delete"
         android:scaleType="fitXY"
         android:tint="@color/background_material_dark"
         android:background="@android:color/transparent"
-        android:layout_below="@+id/image_detail_image_view"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="41dp" />
+        android:layout_alignTop="@+id/image_detail_favor_btn"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/image_detail_favor_btn"
         android:contentDescription="@string/favor_btn_desc"
         android:src="@drawable/heart"
         android:scaleType="fitXY"
         android:tint="@color/background_material_light"
         android:background="@android:color/transparent"
-        android:layout_marginEnd="46dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="60dp"
         android:layout_below="@+id/image_detail_image_view"
-        android:layout_alignParentEnd="true" />
+        android:layout_toEndOf="@+id/image_detail_delete_btn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="These words are to describe this image"
+        android:id="@+id/image_detail_desc_text"
+        android:textSize="20sp"
+        android:layout_below="@+id/image_detail_image_view"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/image_detail_delete_btn" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/launcher"
+        android:id="@+id/image_detail_barber_head"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/image_detail_desc_text"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 likes"
+        android:id="@+id/image_detail_likes_count"
+        android:textSize="17sp"
+        android:layout_alignBottom="@+id/image_detail_favor_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/image_detail_desc_text" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Barber name"
+        android:id="@+id/image_detail_barber_name"
+        android:textSize="17sp"
+        android:layout_alignBottom="@+id/image_detail_barber_head"
+        android:layout_alignStart="@+id/image_detail_favor_btn"
+        android:layout_alignTop="@+id/image_detail_barber_head" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_detail_comment_list"
+        android:layout_below="@+id/image_detail_delete_btn"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

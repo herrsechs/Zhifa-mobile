@@ -16,7 +16,7 @@ public class ImageDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_detail_image);
+        setContentView(R.layout.activity_image_detail);
         ImageView imgView = (ImageView)findViewById(R.id.image_detail_image_view);
         ImageButton favorBtn = (ImageButton)findViewById(R.id.image_detail_favor_btn);
         ImageButton delBtn = (ImageButton)findViewById(R.id.image_detail_delete_btn);
