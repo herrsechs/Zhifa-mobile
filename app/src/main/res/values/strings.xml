@@ -9,6 +9,9 @@
     <string name="image_detail_image_view_desc">发型图片</string>
     <string name="favor_btn_desc">收藏</string>
     <string name="delete_btn_desc">删除</string>
+    <string name="follow_btn_text">+关注</string>
+    <string name="login_btn_text">登录</string>
+    <string name="register_btn_text">注册</string>
     <string name="haircut_img_trans">HAIRCUT_IMAGE_TRANS</string>
     <string name="favor_btn_trans">FAVOR_BTN_TRANS</string>
     <string name="del_btn_trans">DELETE_BTN_TRANS</string>

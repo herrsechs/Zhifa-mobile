@@ -88,4 +88,12 @@
         android:layout_below="@+id/image_detail_delete_btn"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follow_btn_text"
+        android:id="@+id/image_detail_follow"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/image_detail_likes_count" />
+
 </RelativeLayout>
