@@ -6,6 +6,12 @@
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/recycler_item_transition
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/recycler_item_transition
+        </item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
