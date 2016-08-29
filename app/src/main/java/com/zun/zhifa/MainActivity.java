@@ -32,8 +32,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
-        implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private int deviceWidth;
     private int deviceHeight;
@@ -60,23 +59,11 @@ public class MainActivity extends AppCompatActivity
 
 
         RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new ImageAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
-        Intent intent = new Intent(this, ImageDetailActivity.class);
-        String trans_favor_btn = (String)getResources().getString(R.string.favor_btn_trans);
-        String trans_del_btn = (String)getResources().getString(R.string.del_btn_trans);
-        ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                new Pair<View, String>(view.findViewById(R.id.main_favor_btn), trans_favor_btn),
-                new Pair<View, String>(view.findViewById(R.id.main_delete_btn), trans_del_btn));
-        ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
     }
 
     public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
@@ -90,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         public int cardViewWidth;
         public int cardViewHeight;
 
+        @Override
         public long getItemId(int position){
             return mThumbIds[position];
         }
@@ -104,6 +92,7 @@ public class MainActivity extends AppCompatActivity
 
         public void onBindViewHolder(ViewHolder holder, int position){
             holder.imageView.setImageResource(mThumbIds[position]);
+            holder.itemView.setTag(position);
         }
 
         private Integer[] mThumbIds = {
@@ -128,10 +117,16 @@ public class MainActivity extends AppCompatActivity
                 int imgWidth, imgHeight;
                 imgWidth = imgHeight = cardViewWidth;
                 this.imageView.setLayoutParams(new RelativeLayout.LayoutParams(imgWidth, imgHeight));
-//                int btnWidth, btnHeight;
-//                btnWidth = btnHeight = (int)(cardViewHeight * 0.2);
-//                this.favorBtn.setLayoutParams(new RelativeLayout.LayoutParams(btnWidth, btnHeight));
-//                this.deleteBtn.setLayoutParams(new RelativeLayout.LayoutParams(btnWidth, btnHeight));
+
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, ImageDetailActivity.class);
+                        int id = mThumbIds[(int)v.getTag()];
+                        intent.putExtra(ImageDetailActivity.IMAGE_RES_ID, id);
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }

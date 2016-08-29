@@ -34,7 +34,7 @@
         android:contentDescription="@string/favor_btn_desc"
         android:src="@drawable/heart"
         android:scaleType="fitXY"
-        android:tint="@color/background_material_light"
+        android:tint="@android:color/darker_gray"
         android:background="@android:color/transparent"
         android:layout_marginStart="41dp"
         android:layout_marginTop="60dp"

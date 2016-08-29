@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class ImageDetailActivity extends AppCompatActivity {
 
-    public static final String IMAGE_RES_ID = "IMAGE_RES_ID";
+    public static final String IMAGE_RES_ID = "ImageID";
 
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -20,12 +20,11 @@ public class ImageDetailActivity extends AppCompatActivity {
         ImageView imgView = (ImageView)findViewById(R.id.image_detail_image_view);
         ImageButton favorBtn = (ImageButton)findViewById(R.id.image_detail_favor_btn);
         ImageButton delBtn = (ImageButton)findViewById(R.id.image_detail_delete_btn);
+
+        int imgId = getIntent().getExtras().getInt(IMAGE_RES_ID);
+        imgView.setImageResource(imgId);
     }
 
-    public static void launch(AppCompatActivity activity, View transitionView, String imageId){
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, transitionView, imageId);
-        Intent intent = new Intent(activity, ImageDetailActivity.class);
-        //ntent.putExtra(IMAGE_RES_ID, );
-        ActivityCompat.startActivity(activity, intent, options.toBundle());
-    }
+
+
 }
