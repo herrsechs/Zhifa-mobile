@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -27,45 +28,23 @@
         android:layout_alignTop="@+id/image_detail_favor_btn"
         android:layout_alignParentStart="true" />
 
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/image_detail_favor_btn"
-        android:contentDescription="@string/favor_btn_desc"
-        android:src="@drawable/heart"
-        android:scaleType="fitXY"
-        android:tint="@android:color/darker_gray"
-        android:background="@android:color/transparent"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/image_detail_image_view"
-        android:layout_toEndOf="@+id/image_detail_delete_btn" />
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="These words are to describe this image"
         android:id="@+id/image_detail_desc_text"
-        android:textSize="20sp"
+        android:textSize="12sp"
         android:layout_below="@+id/image_detail_image_view"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/image_detail_delete_btn" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/launcher"
-        android:id="@+id/image_detail_barber_head"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/image_detail_desc_text"
-        android:layout_marginTop="10dp" />
+        android:layout_above="@+id/image_detail_delete_btn"
+        android:paddingTop="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20 likes"
         android:id="@+id/image_detail_likes_count"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:layout_alignBottom="@+id/image_detail_favor_btn"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/image_detail_desc_text" />
@@ -86,14 +65,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/image_detail_comment_list"
         android:layout_below="@+id/image_detail_delete_btn"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/background_light"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/follow_btn_text"
+        android:textSize="12sp"
         android:id="@+id/image_detail_follow"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/image_detail_likes_count" />
+        android:layout_alignEnd="@+id/image_detail_likes_count"
+        android:layout_alignBottom="@+id/image_detail_barber_name" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/launcher"
+        android:id="@+id/image_detail_barber_head"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/image_detail_favor_btn" />
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/image_detail_favor_btn"
+        android:contentDescription="@string/favor_btn_desc"
+        android:src="@drawable/heart"
+        android:scaleType="fitXY"
+        android:tint="@android:color/darker_gray"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/image_detail_image_view"
+        android:layout_toEndOf="@+id/image_detail_delete_btn" />
 
 </RelativeLayout>
