@@ -1,9 +1,15 @@
 package com.zun.zhifa;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -12,6 +18,7 @@ import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -32,8 +39,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.File;
 
+public class MainActivity extends AppCompatActivity {
+    public static final int CODE_GALLERY_REQUEST = 0xa0;
+    public static final int CODE_CAMERA_REQUEST = 0xa1;
+    public static final int CODE_RESULT_REQUEST = 0xa2;
     private int deviceWidth;
     private int deviceHeight;
     @Override
@@ -52,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CODE_CAMERA_REQUEST);
             }
         });
 
@@ -64,6 +75,58 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new ImageAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String path = "";
+        if(requestCode == CODE_GALLERY_REQUEST){
+            if(data == null){
+                Log.d("Debug", "Gallery image is empty!");
+            }
+            try {
+                File image = new File(getRealFilePath(this, data.getData()));
+                path = getRealFilePath(this, data.getData());
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }else if(requestCode == CODE_CAMERA_REQUEST){
+            if(data == null){
+                Log.d("Debug", "Camera image is empty!");
+            }else {
+                path = getRealFilePath(this, data.getData());
+            }
+        }
+
+        Intent intent = new Intent(MainActivity.this, SelfieActivity.class);
+        intent.putExtra(SelfieActivity.SELFIE_PATH_KEY, path);
+        startActivity(intent);
+    }
+
+    public static String getRealFilePath( final Context context, final Uri uri ) {
+        if ( null == uri ) return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if ( scheme == null )
+            data = uri.getPath();
+        else if ( ContentResolver.SCHEME_FILE.equals( scheme ) ) {
+            data = uri.getPath();
+        } else if ( ContentResolver.SCHEME_CONTENT.equals( scheme ) ) {
+            Cursor cursor = context.getContentResolver().query( uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null );
+            if ( null != cursor ) {
+                if ( cursor.moveToFirst() ) {
+                    int index = cursor.getColumnIndex( MediaStore.Images.ImageColumns.DATA );
+                    if ( index > -1 ) {
+                        data = cursor.getString( index );
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
     }
 
     public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
