@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,7 +40,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     public static final int CODE_GALLERY_REQUEST = 0xa0;
@@ -97,13 +102,33 @@ public class MainActivity extends AppCompatActivity {
             if(data == null){
                 Log.d("Debug", "Camera image is empty!");
             }else {
-                path = getRealFilePath(this, data.getData());
+                Bitmap bmp = (Bitmap)data.getExtras().get("data");
+                path = saveToStorage(bmp);
             }
         }
 
         Intent intent = new Intent(MainActivity.this, SelfieActivity.class);
         intent.putExtra(SelfieActivity.SELFIE_PATH_KEY, path);
         startActivity(intent);
+    }
+
+    public String saveToStorage(Bitmap bmp){
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destination.getAbsolutePath();
     }
 
     public static String getRealFilePath( final Context context, final Uri uri ) {
