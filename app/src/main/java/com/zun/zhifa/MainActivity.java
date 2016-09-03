@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Debug", "Camera image is empty!");
             }else {
                 Bitmap bmp = (Bitmap)data.getExtras().get("data");
-                path = saveToStorage(bmp);
+                SelfieActivity.selfieBmp = bmp;
             }
         }
 
@@ -112,24 +112,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String saveToStorage(Bitmap bmp){
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
-        FileOutputStream fo;
-        try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
-            fo.write(bytes.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return destination.getAbsolutePath();
-    }
+
 
     public static String getRealFilePath( final Context context, final Uri uri ) {
         if ( null == uri ) return null;

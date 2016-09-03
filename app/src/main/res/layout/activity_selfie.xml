@@ -5,11 +5,32 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
         android:src="@drawable/launcher"
+        android:scaleType="fitXY"
         android:id="@+id/selfie_image_view"
-        android:layout_marginTop="117dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:padding="10dp" />
+
+    <Button
+        android:text="@string/selfie_confirm_text"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/selfie_camera_btn"
+        android:layout_alignEnd="@+id/selfie_image_view"
+        android:id="@+id/selfie_confirm_btn" />
+
+    <Button
+        android:text="@string/selfie_camera_text"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/selfie_camera_btn"
+        android:layout_below="@+id/selfie_image_view"
+        android:layout_alignStart="@+id/selfie_image_view" />
 </RelativeLayout>
