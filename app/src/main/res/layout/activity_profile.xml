@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/profile_user_head"
+            android:src="@drawable/launcher"
+            android:scaleType="fitXY"
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/profile_user_name"
+            android:id="@+id/collection_user_name"
+            android:layout_alignTop="@+id/profile_user_head"
+            android:layout_alignStart="@+id/profile_user_bio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_user_bio"
+            android:id="@+id/profile_user_bio"
+            android:layout_alignBottom="@+id/profile_user_head"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/background_light">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="发型"
+            android:id="@+id/profile_haircut"
+            android:background="@android:color/background_light"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="关注"
+            android:id="@+id/profile_follow"
+            android:background="@android:color/background_light"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="粉丝"
+            android:id="@+id/profile_fan"
+            android:background="@android:color/background_light"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/background_light">
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:padding="17dp"
+                android:textSize="15dp"
+                android:text="我的收藏"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_star"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/background_light">
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:padding="17dp"
+                android:textSize="15dp"
+                android:text="我的档案"
+                android:layout_alignParentEnd="true"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_document"
+                android:layout_marginLeft="35dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></LinearLayout>
+
+
+</LinearLayout>

@@ -14,6 +14,8 @@
     <string name="register_btn_text">注册</string>
     <string name="selfie_confirm_text">确认</string>
     <string name="selfie_camera_text">重拍</string>
+    <string name="profile_user_name">用户名</string>
+    <string name="profile_user_bio">用户简介</string>
     <string name="haircut_img_trans">HAIRCUT_IMAGE_TRANS</string>
     <string name="favor_btn_trans">FAVOR_BTN_TRANS</string>
     <string name="del_btn_trans">DELETE_BTN_TRANS</string>

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -39,6 +40,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -73,6 +77,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        BottomBar bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if(tabId == R.id.tab_compass){
+
+                }else if(tabId == R.id.tab_profile){
+
+                }else if(tabId == R.id.tab_collection){
+
+                }
+            }
+        });
 
         RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
 
