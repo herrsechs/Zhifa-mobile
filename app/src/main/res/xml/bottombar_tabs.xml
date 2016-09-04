@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/refresh"
+        size="30dp"
+        title="Favorites" />
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/star"
+        size="30dp"
+        title="Nearby" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/delete"
+        size="30dp"
+        title="Friends" />
+</tabs>
