@@ -69,27 +69,32 @@ public class MainActivity extends AppCompatActivity {
         deviceHeight = displayMetrics.heightPixels;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, CODE_CAMERA_REQUEST);
-            }
-        });
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CODE_CAMERA_REQUEST);
+                }
+            });
+        }
 
         BottomBar bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if(tabId == R.id.tab_compass){
+        if (bottomBar != null) {
+            bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+                @Override
+                public void onTabSelected(@IdRes int tabId) {
+                    if(tabId == R.id.tab_compass){
 
-                }else if(tabId == R.id.tab_profile){
+                    }else if(tabId == R.id.tab_profile){
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                    }else if(tabId == R.id.tab_collection){
 
-                }else if(tabId == R.id.tab_collection){
-
+                    }
                 }
-            }
-        });
+            });
+        }
 
         RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.main_recycler_view);
 
@@ -119,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
             if(data == null){
                 Log.d("Debug", "Camera image is empty!");
             }else {
-                Bitmap bmp = (Bitmap)data.getExtras().get("data");
-                SelfieActivity.selfieBmp = bmp;
+                SelfieActivity.selfieBmp = (Bitmap)data.getExtras().get("data");
             }
         }
 
