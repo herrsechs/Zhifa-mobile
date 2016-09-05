@@ -1,4 +1,4 @@
-package com.zun.zhifa;
+package com.zun.zhifa.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.zun.zhifa.R;
 
 public class OpeningActivity extends AppCompatActivity {
 

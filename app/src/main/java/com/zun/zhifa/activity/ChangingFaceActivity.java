@@ -1,9 +1,11 @@
-package com.zun.zhifa;
+package com.zun.zhifa.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import com.zun.zhifa.R;
 
 public class ChangingFaceActivity extends AppCompatActivity {
     public static Bitmap selfieBmp;
