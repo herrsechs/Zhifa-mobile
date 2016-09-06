@@ -47,21 +47,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="发型"
+            android:text="@string/profile_user_haircut"
             android:id="@+id/profile_haircut"
             android:background="@android:color/background_light"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="关注"
+            android:text="@string/profile_user_follow"
             android:id="@+id/profile_follow"
             android:background="@android:color/background_light"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="粉丝"
+            android:text="@string/profile_user_fan"
             android:id="@+id/profile_fan"
             android:background="@android:color/background_light"/>
 
@@ -72,18 +72,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        >
+        android:showDividers="middle"
+        android:divider="@android:color/darker_gray">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/background_light">
+            android:background="@android:color/background_light"
+            android:id="@+id/profile_user_collection">
 
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="285dp"
                 android:layout_height="50dp"
-                android:padding="17dp"
-                android:textSize="15dp"
-                android:text="我的收藏"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:text="@string/profile_user_collection"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true" />
 
@@ -91,34 +93,54 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_star"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="10dp"
                 android:layout_alignParentTop="true" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/background_light">
+            android:background="@android:color/background_light"
+            android:id="@+id/profile_user_document">
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="285dp"
                 android:layout_height="50dp"
-                android:padding="17dp"
-                android:textSize="15dp"
-                android:text="我的档案"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:text="@string/profile_user_document"
                 android:layout_alignParentEnd="true"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_document"
-                android:layout_marginLeft="35dp"/>
+                android:layout_marginStart="35dp"/>
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:id="@+id/profile_user_account">
+            <TextView
+                android:layout_width="285dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:text="退出登录"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="35dp"/>
+        </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
