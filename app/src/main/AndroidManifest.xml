@@ -8,7 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar" >
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".activity.MainActivity">
         </activity>
         <activity android:name=".activity.LoginActivity">
@@ -20,6 +20,11 @@
         <activity android:name=".activity.ChangingFaceActivity">
         </activity>
         <activity android:name=".activity.ProfileActivity">
+        </activity>
+        <activity android:name=".activity.SearchableActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
         </activity>
         <activity android:name=".activity.OpeningActivity"
             android:icon="@drawable/launcher"
