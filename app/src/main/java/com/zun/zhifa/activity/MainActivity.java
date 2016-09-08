@@ -24,6 +24,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -40,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
     public static final int CODE_RESULT_REQUEST = 0xa2;
     private int deviceWidth;
     private int deviceHeight;
+    private BottomBar bottomBar;
+    private Toolbar toolbar;
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         deviceWidth = displayMetrics.widthPixels;
         deviceHeight = displayMetrics.heightPixels;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        BottomBar bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
+        bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
         if (bottomBar != null) {
             bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
                 @Override
@@ -74,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                         startActivity(intent);
                     }else if(tabId == R.id.tab_collection){
-
+                        Intent intent = new Intent(MainActivity.this, ChangingFaceActivity.class);
+                        startActivity(intent);
                     }
                 }
             });
@@ -86,6 +93,38 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new ImageAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
+//            private boolean scrolling = false;
+            private int SCROLL_THRESHOLD = 5;
+            private int sum = 0;
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                Log.d("SCROLL_Y", "" + dy);
+                sum += dy;
+                if(sum > SCROLL_THRESHOLD){
+                    hide();
+                    sum = 0;
+                }else{
+                    show();
+                }
+            }
+
+            public void hide(){
+                toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+                bottomBar.animate().translationY(bottomBar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams)fab.getLayoutParams();
+                int fabBottomMargin = lp.bottomMargin;
+                fab.animate().translationY(fab.getHeight()+fabBottomMargin).setInterpolator(new AccelerateInterpolator(2)).start();
+            }
+
+            public void show(){
+                toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+                bottomBar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+                fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            }
+        });
     }
 
     @Override
