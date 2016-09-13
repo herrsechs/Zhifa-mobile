@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.IdRes;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -102,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
                 Log.d("SCROLL_Y", "" + dy);
-                sum += dy;
+                if(dy > 0) {
+                    sum += dy;
+                }
                 if(sum > SCROLL_THRESHOLD){
                     hide();
                     sum = 0;
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             public void hide(){
                 toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
                 bottomBar.animate().translationY(bottomBar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
-                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams)fab.getLayoutParams();
+                CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams)fab.getLayoutParams();
                 int fabBottomMargin = lp.bottomMargin;
                 fab.animate().translationY(fab.getHeight()+fabBottomMargin).setInterpolator(new AccelerateInterpolator(2)).start();
             }
