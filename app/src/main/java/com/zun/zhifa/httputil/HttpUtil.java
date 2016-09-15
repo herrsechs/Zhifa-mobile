@@ -43,7 +43,7 @@ public class HttpUtil {
             public void onResponse(Call call, Response response) throws IOException {
                 Intent intent = new Intent();
                 intent.setAction("AUTH");
-                intent.putExtra(intentKey, "Something");
+                intent.putExtra(intentKey, response.body().string());
                 context.sendBroadcast(intent);
             }
         });
