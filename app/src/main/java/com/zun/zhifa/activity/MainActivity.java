@@ -1,9 +1,11 @@
 package com.zun.zhifa.activity;
 
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -47,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private BottomBar bottomBar;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+
+    private IntentFilter intentFilter;
+    private LocalBroadcastManager broadcastManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -262,6 +269,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+        }
+    }
+
+    private class LocalReciever extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent){
+
         }
     }
 }

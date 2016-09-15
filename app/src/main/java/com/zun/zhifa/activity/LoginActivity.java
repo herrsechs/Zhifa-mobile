@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                         accnt.password = pwdTxt.getText().toString();
                     }
                     accnt.role = "Customer";
-                    AccountUtil.login(accnt);
+                    AccountUtil.login(accnt, LoginActivity.this);
                 }
             });
         }

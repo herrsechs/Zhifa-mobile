@@ -1,5 +1,9 @@
 package com.zun.zhifa.httputil;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -13,16 +17,19 @@ import okhttp3.Response;
 public class HttpUtil {
     protected static OkHttpClient client;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static final String TAG = ".httputil.HttpUtil";
 
     public static void init(){
         client = new OkHttpClient();
     }
 
-    public static void postJSON(String url, String json) throws IOException{
+    public static void postJSON(String url, String json,
+                                final Context context, final String intentKey) throws IOException{
         if(client == null){
             init();
         }
 
+        Log.d(TAG, json);
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder().url(url).post(body).build();
 
@@ -34,7 +41,10 @@ public class HttpUtil {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                Intent intent = new Intent();
+                intent.setAction("AUTH");
+                intent.putExtra(intentKey, "Something");
+                context.sendBroadcast(intent);
             }
         });
 
