@@ -2,12 +2,15 @@ package com.zun.zhifa.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 
 import com.zun.zhifa.R;
+import com.zun.zhifa.constants.SettingConstants;
 
 public class OpeningActivity extends AppCompatActivity {
 
@@ -50,6 +53,21 @@ public class OpeningActivity extends AppCompatActivity {
             }
         }.execute();
 
+    }
+
+    private void initSetting(){
+        SharedPreferences settings = getSharedPreferences(SettingConstants.DEVICE_INFO, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int deviceWidth = displayMetrics.widthPixels;
+        int deviceHeight = displayMetrics.heightPixels;
+
+        editor.putInt(SettingConstants.DEVICE_WIDTH, deviceWidth);
+        editor.putInt(SettingConstants.DEVICE_HEIGHT, deviceHeight);
+
+        editor.apply();
     }
 
     protected Integer loadingCache(){
