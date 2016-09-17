@@ -24,6 +24,7 @@ public class OpeningActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         super.setContentView(R.layout.activity_opening);
 
+        initSetting();
         new AsyncTask<Void, Void, Integer>(){
             @Override
             protected Integer doInBackground(Void...params){

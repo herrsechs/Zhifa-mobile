@@ -21,8 +21,8 @@
                 android:transitionName="@string/haircut_img_trans"
                 android:contentDescription="@string/main_activity_image_view_desc"/>
             <ImageButton
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/delete"
                 android:id="@+id/main_delete_btn"
                 android:scaleType="fitXY"
@@ -32,8 +32,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_alignParentBottom="true" />
             <ImageButton
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/heart"
                 android:id="@+id/main_favor_btn"
                 android:scaleType="fitXY"

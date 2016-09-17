@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.zun.zhifa.activity.MainActivity;
 import com.zun.zhifa.activity.ProfileActivity;
 import com.zun.zhifa.httputil.AccountUtil;
 
@@ -17,7 +18,7 @@ public class AuthReceiver extends BroadcastReceiver {
         Log.d(TAG, result);
         if("success".equals(result)){
             Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
-            Intent it = new Intent(context, ProfileActivity.class);
+            Intent it = new Intent(context, MainActivity.class);
             context.startActivity(it);
         }else{
             Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();

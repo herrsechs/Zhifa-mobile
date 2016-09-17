@@ -57,21 +57,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Fragment frag = new TimelineFragment();
-//        getFragmentManager().beginTransaction().replace(R.id.main_content, frag).commit();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         BottomBar bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
         if (bottomBar != null) {
             bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
                 @Override
                 public void onTabSelected(@IdRes int tabId) {
-                    if(tabId == R.id.tab_compass){
-                        setTabSelection(0);
-                    }else if(tabId == R.id.tab_profile){
-                        setTabSelection(1);
-                    }else if(tabId == R.id.tab_collection){
-                        setTabSelection(2);
-                    }
+                if(tabId == R.id.tab_compass){
+                    setTabSelection(0);
+                }else if(tabId == R.id.tab_profile){
+                    setTabSelection(1);
+                }else if(tabId == R.id.tab_collection){
+                    setTabSelection(2);
+                }
                 }
             });
         }

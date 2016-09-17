@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -39,21 +40,22 @@ public class TimelineFragment extends Fragment {
         bottomBar = (BottomBar)getActivity().findViewById(R.id.main_bottom_bar);
         fab = (FloatingActionButton)getActivity().findViewById(R.id.fab);
 
+        final AppCompatActivity act = (AppCompatActivity)getActivity();
+
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, SettingConstants.CODE_CAMERA_REQUEST);
+                act.startActivityForResult(intent, SettingConstants.CODE_CAMERA_REQUEST);
                 }
             });
         }
 
-        RecyclerView mRecyclerView = (RecyclerView)getActivity().findViewById(R.id.main_recycler_view);
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        RecyclerView mRecyclerView = (RecyclerView)act.findViewById(R.id.main_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(act, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new ImageCardAdapter(getActivity());
+        RecyclerView.Adapter mAdapter = new ImageCardAdapter(act);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){

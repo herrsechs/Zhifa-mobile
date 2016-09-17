@@ -40,7 +40,7 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
 
         // Get device info through shared preference
         SharedPreferences settings = mContext.getSharedPreferences(SettingConstants.DEVICE_INFO, 0);
-        deviceWidth = settings.getInt(SettingConstants.DEVICE_WIDTH, 500);
+        deviceWidth = settings.getInt(SettingConstants.DEVICE_WIDTH, 800);
 
         cardViewWidth = deviceWidth / 2;
         cardViewHeight = (int) (cardViewWidth * 1.3);
