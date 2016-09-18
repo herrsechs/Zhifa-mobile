@@ -1,5 +1,7 @@
 package com.zun.zhifa.constants;
 
+import android.os.Environment;
+
 public class SettingConstants {
     public static final String DEVICE_INFO = "DEVICE_INFO";
     public static final String DEVICE_WIDTH = "DEVICE_WIDTH";
@@ -7,4 +9,5 @@ public class SettingConstants {
     public static final int CODE_GALLERY_REQUEST = 0xa0;
     public static final int CODE_CAMERA_REQUEST = 0xa1;
     public static final int CODE_RESULT_REQUEST = 0xa2;
+    public static final String appPath = Environment.getExternalStorageDirectory().getPath() + "/zhifa/";
 }

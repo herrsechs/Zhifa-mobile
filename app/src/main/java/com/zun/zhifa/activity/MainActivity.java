@@ -149,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Debug", "Gallery image is empty!");
             }
             try {
-                File image = new File(getRealFilePath(this, data.getData()));
                 path = getRealFilePath(this, data.getData());
             }
             catch(Exception e){

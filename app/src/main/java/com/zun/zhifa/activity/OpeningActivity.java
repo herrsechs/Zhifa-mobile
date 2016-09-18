@@ -12,6 +12,8 @@ import android.util.DisplayMetrics;
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.SettingConstants;
 
+import java.io.File;
+
 public class OpeningActivity extends AppCompatActivity {
 
     private static final int FAILURE = 0;
@@ -25,6 +27,7 @@ public class OpeningActivity extends AppCompatActivity {
         super.setContentView(R.layout.activity_opening);
 
         initSetting();
+        initFolder();
         new AsyncTask<Void, Void, Integer>(){
             @Override
             protected Integer doInBackground(Void...params){
@@ -69,6 +72,14 @@ public class OpeningActivity extends AppCompatActivity {
         editor.putInt(SettingConstants.DEVICE_HEIGHT, deviceHeight);
 
         editor.apply();
+    }
+
+    public void initFolder(){
+        String path = SettingConstants.appPath;
+        File dir = new File(path);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
     }
 
     protected Integer loadingCache(){
