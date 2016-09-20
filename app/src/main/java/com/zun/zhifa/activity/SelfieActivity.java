@@ -72,7 +72,7 @@ public class SelfieActivity extends AppCompatActivity {
         java.text.DateFormat format = new SimpleDateFormat("hhmmss");
         String timestamp = format.format(date);
 
-        String path = SettingConstants.appPath + timestamp + "jpg";
+        String path = SettingConstants.appPath + timestamp + ".jpg";
         File file = new File(path);
         Boolean saveFileSuccess = false;
         try{

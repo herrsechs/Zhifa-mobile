@@ -20,7 +20,7 @@
                 android:id="@+id/selfie_image_view"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:padding="10dp" />
+                android:layout_margin="10dp"/>
 
             <Button
                 android:text="@string/selfie_confirm_text"
