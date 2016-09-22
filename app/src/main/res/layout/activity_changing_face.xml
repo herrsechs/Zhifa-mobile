@@ -27,7 +27,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/star"
             android:layout_marginStart="26dp"
-            android:id="@+id/imageButton3"
+            android:id="@+id/change_face_normal_btn"
             android:layout_below="@+id/change_face_merging_image_view"
             android:layout_alignParentStart="true" />
 
@@ -36,17 +36,16 @@
             android:layout_height="50dp"
             android:scaleType="fitXY"
             android:src="@drawable/star"
-            android:layout_marginStart="26dp"
-            android:id="@+id/imageButton4"
-            android:layout_below="@+id/change_face_merging_image_view"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/change_face_sketch_btn"
+            android:layout_below="@+id/change_face_normal_btn"
+            android:layout_alignStart="@+id/change_face_normal_btn" />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
             android:src="@drawable/star"
-            android:id="@+id/imageButton5"
+            android:id="@+id/change_face_nostalgia_btn"
             android:layout_below="@+id/change_face_merging_image_view"
             android:layout_centerHorizontal="true" />
 
@@ -55,7 +54,7 @@
             android:layout_height="50dp"
             android:scaleType="fitXY"
             android:src="@drawable/star"
-            android:id="@+id/imageButton2"
+            android:id="@+id/change_face_soft_light_btn"
             android:layout_marginEnd="32dp"
             android:layout_below="@+id/change_face_merging_image_view"
             android:layout_alignParentEnd="true" />

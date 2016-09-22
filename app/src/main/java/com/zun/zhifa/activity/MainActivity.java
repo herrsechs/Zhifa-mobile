@@ -49,6 +49,9 @@ import com.zun.zhifa.fragment.TimelineFragment;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = ".activity.MainActivity";
+    public static final String FRAGMENT_TAG = "FRAGMENT_ID";
+
     private TimelineFragment timelineFg;
     private ProfileFragment profileFg;
     private ChangingFaceFragment changingFaceFg;
@@ -74,6 +77,25 @@ public class MainActivity extends AppCompatActivity {
                 }
                 }
             });
+        }
+
+        Intent intent = getIntent();
+        if(intent != null){
+            int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
+            switch (tabId){
+                case R.id.tab_compass:
+                    setTabSelection(0);
+                    break;
+                case R.id.tab_profile:
+                    setTabSelection(1);
+                    break;
+                case R.id.tab_collection:
+                    setTabSelection(2);
+                    break;
+                default:
+                    setTabSelection(0);
+                    break;
+            }
         }
     }
 

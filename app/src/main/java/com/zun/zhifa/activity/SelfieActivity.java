@@ -34,26 +34,29 @@ public class SelfieActivity extends AppCompatActivity {
         super.setContentView(R.layout.activity_selfie);
         ImageView selfieImgView = (ImageView)findViewById(R.id.selfie_image_view);
 
-        if(selfieBmp != null){
+        if(selfieBmp != null && selfieImgView != null){
             selfieImgView.setImageBitmap(selfieBmp);
         }
 
         Button confirmBtn = (Button)findViewById(R.id.selfie_confirm_btn);
-        confirmBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelfieActivity.this, ChangingFaceActivity.class);
-                ChangingFaceActivity.selfieBmp = selfieBmp;
-                String path = saveBitmap(selfieBmp);
-                if(path != null) {
-                    Image img = new Image();
-                    img.cid = "1";
-                    img.path = path;
-                    ImageUtil.uploadSelfie(img, SelfieActivity.this);
+        if (confirmBtn != null) {
+            confirmBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(SelfieActivity.this, MainActivity.class);
+                    intent.putExtra(MainActivity.FRAGMENT_TAG, R.id.tab_collection);
+                    ChangingFaceActivity.selfieBmp = selfieBmp;
+                    String path = saveBitmap(selfieBmp);
+                    if(path != null) {
+                        Image img = new Image();
+                        img.cid = "1";
+                        img.path = path;
+                        ImageUtil.uploadSelfie(img, SelfieActivity.this);
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
-            }
-        });
+            });
+        }
     }
 
     public Bitmap getPhotoBitmap(String path){
