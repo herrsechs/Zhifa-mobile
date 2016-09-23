@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.SettingConstants;
+import com.zun.zhifa.fragment.ChangingFaceFragment;
 import com.zun.zhifa.httputil.ImageUtil;
 import com.zun.zhifa.model.Image;
 
@@ -45,7 +46,7 @@ public class SelfieActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(SelfieActivity.this, MainActivity.class);
                     intent.putExtra(MainActivity.FRAGMENT_TAG, R.id.tab_collection);
-                    ChangingFaceActivity.selfieBmp = selfieBmp;
+                    ChangingFaceFragment.selfieBmp = selfieBmp;
                     String path = saveBitmap(selfieBmp);
                     if(path != null) {
                         Image img = new Image();

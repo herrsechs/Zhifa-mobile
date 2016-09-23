@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ff444444">
 
-    <ListView
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:id="@+id/listView" />
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="442dp"
-            android:src="@drawable/launcher"
-            android:scaleType="fitXY"
-            android:id="@+id/change_face_merging_image_view" />
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_card_view"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/star"
-            android:layout_marginStart="26dp"
-            android:id="@+id/change_face_normal_btn"
-            android:layout_below="@+id/change_face_merging_image_view"
-            android:layout_alignParentStart="true" />
+            card_view:cardCornerRadius="4dp"
+            >
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:src="@drawable/launcher"
+                android:scaleType="centerCrop"
+                android:id="@+id/change_face_merging_image_view"
+                android:layout_toEndOf="@+id/change_face_soft_light_btn" />
+        </android.support.v7.widget.CardView>
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/star"
-            android:id="@+id/change_face_sketch_btn"
-            android:layout_below="@+id/change_face_normal_btn"
-            android:layout_alignStart="@+id/change_face_normal_btn" />
+        <AbsoluteLayout
+            android:layout_width="match_parent"
+            android:layout_height="191dp"
+            android:background="#70ffffff"
+            android:layout_marginTop="10dp"
+            >
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                android:id="@+id/change_face_normal_btn"
+                android:layout_x="188dp"
+                android:layout_y="81dp" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/star"
-            android:id="@+id/change_face_nostalgia_btn"
-            android:layout_below="@+id/change_face_merging_image_view"
-            android:layout_centerHorizontal="true" />
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                android:id="@+id/change_face_sketch_btn"
+                android:layout_x="269dp"
+                android:layout_y="81dp" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/star"
-            android:id="@+id/change_face_soft_light_btn"
-            android:layout_marginEnd="32dp"
-            android:layout_below="@+id/change_face_merging_image_view"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                android:id="@+id/change_face_nostalgia_btn"
+                android:layout_x="185dp"
+                android:layout_y="20dp" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                android:id="@+id/change_face_soft_light_btn"
+                android:layout_marginEnd="52dp"
+                android:layout_x="268dp"
+                android:layout_y="20dp" />
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="130dp"
+                android:id="@+id/imageView3"
+                android:src="@drawable/res1"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="39dp"
+                android:layout_x="41dp"
+                android:layout_y="12dp" />
+        </AbsoluteLayout>
+
+
+
+
+
 
 </LinearLayout>

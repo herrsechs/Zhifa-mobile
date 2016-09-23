@@ -3,6 +3,7 @@ package com.zun.zhifa.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -83,6 +84,18 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
                     int id = mThumbIds[(int)v.getTag()];
                     intent.putExtra(ImageDetailActivity.IMAGE_RES_ID, id);
                     mContext.startActivity(intent);
+                }
+            });
+
+            favorBtn.setOnClickListener(new View.OnClickListener() {
+                private boolean clicked = false;
+                @Override
+                public void onClick(View v) {
+                    if(!clicked) {
+
+                    }else{
+                        favorBtn.setBackgroundColor(Color.TRANSPARENT);
+                    }
                 }
             });
         }

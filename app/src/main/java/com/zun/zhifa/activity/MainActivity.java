@@ -80,8 +80,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        if(intent != null){
+        if(intent != null && intent.hasExtra(FRAGMENT_TAG)){
             int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
+
             switch (tabId){
                 case R.id.tab_compass:
                     setTabSelection(0);
