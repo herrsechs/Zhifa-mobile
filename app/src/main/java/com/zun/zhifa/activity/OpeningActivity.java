@@ -28,6 +28,8 @@ public class OpeningActivity extends AppCompatActivity {
 
         initSetting();
         initFolder();
+
+
         new AsyncTask<Void, Void, Integer>(){
             @Override
             protected Integer doInBackground(Void...params){

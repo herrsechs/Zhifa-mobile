@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.ImageFilterConstants;
+import com.zun.zhifa.httputil.ImageUtil;
 
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
@@ -80,6 +81,16 @@ public class ChangingFaceFragment  extends Fragment{
                 }
             });
         }
+
+        if(mergeFaceView != null){
+            mergeFaceView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageUtil.downloadChangedFace(act);
+                }
+            });
+        }
+
     }
 
     private void setFilterImg(Context context, ImageView view, int flag){

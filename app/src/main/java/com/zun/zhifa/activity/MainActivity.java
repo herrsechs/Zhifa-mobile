@@ -1,5 +1,6 @@
 package com.zun.zhifa.activity;
 
+import android.Manifest;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
@@ -30,6 +31,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -37,8 +40,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
+//import com.roughike.bottombar.BottomBar;
+//import com.roughike.bottombar.OnTabSelectListener;
 import com.zun.zhifa.R;
 import com.zun.zhifa.adapter.ImageCardAdapter;
 import com.zun.zhifa.constants.SettingConstants;
@@ -60,44 +63,63 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
-        BottomBar bottomBar = (BottomBar)findViewById(R.id.main_bottom_bar);
-        if (bottomBar != null) {
-            bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+        requestPermissions(new String[]{
+            Manifest.permission.CAMERA}, 0);
+
+//        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        setTabSelection(0);
+        ImageButton tmlBtn = (ImageButton)findViewById(R.id.timeline_btn);
+        ImageButton pflBtn = (ImageButton)findViewById(R.id.profile_btn);
+        ImageButton cfBtn = (ImageButton)findViewById(R.id.changeface_btn);
+        if(tmlBtn != null){
+            tmlBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onTabSelected(@IdRes int tabId) {
-                if(tabId == R.id.tab_compass){
+                public void onClick(View v) {
                     setTabSelection(0);
-                }else if(tabId == R.id.tab_profile){
-                    setTabSelection(1);
-                }else if(tabId == R.id.tab_collection){
-                    setTabSelection(2);
-                }
                 }
             });
         }
-
-        Intent intent = getIntent();
-        if(intent != null && intent.hasExtra(FRAGMENT_TAG)){
-            int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
-
-            switch (tabId){
-                case R.id.tab_compass:
-                    setTabSelection(0);
-                    break;
-                case R.id.tab_profile:
+        if(pflBtn != null){
+            pflBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     setTabSelection(1);
-                    break;
-                case R.id.tab_collection:
-                    setTabSelection(2);
-                    break;
-                default:
-                    setTabSelection(0);
-                    break;
-            }
+                }
+            });
         }
+        if(cfBtn != null){
+            cfBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setTabSelection(2);
+                }
+            });
+        }
+//        Intent intent = getIntent();
+//        if(intent != null && intent.hasExtra(FRAGMENT_TAG)){
+//            int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
+//
+//            switch (tabId){
+//                case R.id.tab_compass:
+//                    setTabSelection(0);
+//                    break;
+//                case R.id.tab_profile:
+//                    setTabSelection(1);
+//                    break;
+//                case R.id.tab_collection:
+//                    setTabSelection(2);
+//                    break;
+//                default:
+//                    setTabSelection(0);
+//                    break;
+//            }
+//        }
     }
 
     private void setTabSelection(int index){

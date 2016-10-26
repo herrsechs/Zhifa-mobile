@@ -1,22 +1,28 @@
 package com.zun.zhifa.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.TimeUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.SettingConstants;
 import com.zun.zhifa.fragment.ChangingFaceFragment;
 import com.zun.zhifa.httputil.ImageUtil;
 import com.zun.zhifa.model.Image;
+import com.faceplusplus.api.FaceDetecter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,10 +36,22 @@ public class SelfieActivity extends AppCompatActivity {
 
     public static final String SELFIE_PATH_KEY = "SELFIE_PATH_KEY";
     public static Bitmap selfieBmp;
+    HandlerThread detectThread = null;
+    Handler detectHandler = null;
+    FaceDetecter detecter = null;
+
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         super.setContentView(R.layout.activity_selfie);
         ImageView selfieImgView = (ImageView)findViewById(R.id.selfie_image_view);
+
+        if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }else{
+            Toast.makeText(SelfieActivity.this, "请先取得文件读写权限", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         if(selfieBmp != null && selfieImgView != null){
             selfieImgView.setImageBitmap(selfieBmp);

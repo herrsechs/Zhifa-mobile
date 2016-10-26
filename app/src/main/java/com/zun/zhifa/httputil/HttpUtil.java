@@ -30,8 +30,7 @@ public class HttpUtil {
         client = new OkHttpClient();
     }
 
-    public static void postJSON(String url, String json,
-                                final Context context, final String intentKey) throws IOException{
+    public static void postJSON(String url, String json, Callback callback) throws IOException{
         if(client == null){
             init();
         }
@@ -40,25 +39,10 @@ public class HttpUtil {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder().url(url).post(body).build();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Intent intent = new Intent();
-                intent.setAction("AUTH");
-                intent.putExtra(intentKey, response.body().string());
-                context.sendBroadcast(intent);
-            }
-        });
-
+        client.newCall(request).enqueue(callback);
     }
 
-    public static void postImg(String url, String imgPath, JSONObject form,
-                               final Context context, final String intentKey) throws IOException, JSONException {
+    public static void postImg(String url, String imgPath, JSONObject form, Callback callback) throws IOException, JSONException {
         if(client == null){
             init();
         }
@@ -86,7 +70,8 @@ public class HttpUtil {
         RequestBody body = builder.build();
         Request request = new Request.Builder().url(url).post(body).build();
 
-        client.newCall(request).enqueue(new Callback() {
+        client.newCall(request).enqueue(callback);
+        new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -96,7 +81,7 @@ public class HttpUtil {
             public void onResponse(Call call, Response response) throws IOException {
                 Log.d(TAG, response.body().string());
             }
-        });
+        };
 
     }
 

@@ -8,14 +8,43 @@
     <FrameLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/main_bottom_bar"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"/>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/border"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs">
+        android:layout_alignParentStart="true">
 
-    </com.roughike.bottombar.BottomBar>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_compass"
+            android:background="#FFFFFF"
+            android:id="@+id/timeline_btn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="49dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_profile"
+            android:background="#FFFFFF"
+            android:id="@+id/profile_btn"
+            android:layout_alignBottom="@+id/changeface_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="49dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:src="@drawable/icon_document"
+            android:id="@+id/changeface_btn"
+            android:layout_alignTop="@+id/timeline_btn"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:background="@drawable/border">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:background="@android:color/holo_blue_dark"
+            android:src="@android:drawable/ic_search_category_default"
+            android:layout_margin="5dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#FFFFFF"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/editText" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/editText" />
+    </RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/icon_camera" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:id="@+id/timeline_view"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
