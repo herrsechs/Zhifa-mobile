@@ -26,5 +26,16 @@
     <string name="haircut_img_trans">HAIRCUT_IMAGE_TRANS</string>
     <string name="favor_btn_trans">FAVOR_BTN_TRANS</string>
     <string name="del_btn_trans">DELETE_BTN_TRANS</string>
-
+    <string-array name="role_entry">
+        <item>顾客</item>
+        <item>理发师</item>
+    </string-array>
+    <string-array name="gender_entry">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string-array name="hair_entry">
+        <item>长</item>
+        <item>短</item>
+    </string-array>
 </resources>

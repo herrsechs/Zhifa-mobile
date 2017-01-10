@@ -19,7 +19,7 @@
             >
             <ImageView
                 android:layout_width="300dp"
-                android:layout_height="400dp"
+                android:layout_height="350dp"
                 android:src="@drawable/launcher"
                 android:scaleType="centerCrop"
                 android:id="@+id/change_face_merging_image_view"
@@ -32,38 +32,34 @@
             android:background="#70ffffff"
             android:layout_marginTop="10dp"
             >
-            <ImageButton
-                android:layout_width="50dp"
+            <Button
+                android:layout_width="75dp"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/star"
+                android:text="常规"
                 android:id="@+id/change_face_normal_btn"
                 android:layout_x="188dp"
                 android:layout_y="81dp" />
 
-            <ImageButton
-                android:layout_width="50dp"
+            <Button
+                android:layout_width="75dp"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/star"
+                android:text="素描"
                 android:id="@+id/change_face_sketch_btn"
                 android:layout_x="269dp"
                 android:layout_y="81dp" />
 
-            <ImageButton
-                android:layout_width="50dp"
+            <Button
+                android:layout_width="75dp"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/star"
+                android:text="怀旧"
                 android:id="@+id/change_face_nostalgia_btn"
                 android:layout_x="185dp"
                 android:layout_y="20dp" />
 
-            <ImageButton
-                android:layout_width="50dp"
+            <Button
+                android:layout_width="75dp"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/star"
+                android:text="柔光"
                 android:id="@+id/change_face_soft_light_btn"
                 android:layout_marginEnd="52dp"
                 android:layout_x="268dp"
@@ -74,7 +70,7 @@
                 android:layout_width="100dp"
                 android:layout_height="130dp"
                 android:id="@+id/imageView3"
-                android:src="@drawable/res1"
+                android:src="@drawable/ms17"
                 android:scaleType="centerCrop"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"

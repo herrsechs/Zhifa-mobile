@@ -9,6 +9,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,10 +51,13 @@ public class HttpUtil {
             init();
         }
 
+        File uploadImg = new File(imgPath);
+        renameFile(uploadImg);
+
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addPart(
                 Headers.of("Content-Disposition", "form-data; name=\"" + form.getString("IMG_TYPE") +"\""),
-                RequestBody.create(IMG_TYPE, new File(imgPath))
+                RequestBody.create(IMG_TYPE, uploadImg)
         );
 
         if(form.has("ID_TYPE")){
@@ -85,4 +92,27 @@ public class HttpUtil {
 
     }
 
+    public static String getTimeStampString(){
+        String dateStr = "";
+        Date date = new Date();
+        DateFormat dft = new SimpleDateFormat("MM-dd-HH-mm");
+        try {
+            dateStr = dft.format(date) + ".jpg";
+        } catch (Exception e) {
+            e.printStackTrace();
+            dateStr = "error.jpg";
+        }
+        return dateStr;
+    }
+
+    public static void renameFile(File f) {
+        String path = f.getAbsolutePath();
+        String name = getTimeStampString();
+        try {
+            File newF = new File(path + "/" + name);
+            f.renameTo(newF);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

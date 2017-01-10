@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,10 +36,10 @@ public class ChangingFaceFragment  extends Fragment{
         final Activity act = getActivity();
 
         final ImageView mergeFaceView = (ImageView)act.findViewById(R.id.change_face_merging_image_view);
-        ImageButton normalBtn = (ImageButton)act.findViewById(R.id.change_face_normal_btn);
-        ImageButton sketchBtn = (ImageButton)act.findViewById(R.id.change_face_sketch_btn);
-        ImageButton softLightBtn = (ImageButton)act.findViewById(R.id.change_face_soft_light_btn);
-        ImageButton nostalgiaBtn = (ImageButton)act.findViewById(R.id.change_face_nostalgia_btn);
+        Button normalBtn = (Button)act.findViewById(R.id.change_face_normal_btn);
+        Button sketchBtn = (Button)act.findViewById(R.id.change_face_sketch_btn);
+        Button softLightBtn = (Button)act.findViewById(R.id.change_face_soft_light_btn);
+        Button nostalgiaBtn = (Button)act.findViewById(R.id.change_face_nostalgia_btn);
 
         if(mergeFaceView != null && selfieBmp != null){
             mergeFaceView.setImageBitmap(selfieBmp);

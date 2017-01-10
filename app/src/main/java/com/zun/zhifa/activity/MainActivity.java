@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        setTabSelection(0);
         ImageButton tmlBtn = (ImageButton)findViewById(R.id.timeline_btn);
         ImageButton pflBtn = (ImageButton)findViewById(R.id.profile_btn);
         ImageButton cfBtn = (ImageButton)findViewById(R.id.changeface_btn);
@@ -101,25 +100,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-//        Intent intent = getIntent();
-//        if(intent != null && intent.hasExtra(FRAGMENT_TAG)){
-//            int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
-//
-//            switch (tabId){
-//                case R.id.tab_compass:
-//                    setTabSelection(0);
-//                    break;
-//                case R.id.tab_profile:
-//                    setTabSelection(1);
-//                    break;
-//                case R.id.tab_collection:
-//                    setTabSelection(2);
-//                    break;
-//                default:
-//                    setTabSelection(0);
-//                    break;
-//            }
-//        }
+
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra(FRAGMENT_TAG)){
+            int tabId = intent.getExtras().getInt(FRAGMENT_TAG);
+
+            switch (tabId){
+                case R.id.tab_compass:
+                    setTabSelection(0);
+                    break;
+                case R.id.tab_profile:
+                    setTabSelection(1);
+                    break;
+                case R.id.tab_collection:
+                    setTabSelection(2);
+                    break;
+                default:
+                    setTabSelection(0);
+                    break;
+            }
+        }else {
+            setTabSelection(0);
+        }
     }
 
     private void setTabSelection(int index){

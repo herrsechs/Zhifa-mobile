@@ -17,23 +17,25 @@ import com.zun.zhifa.R;
 import com.zun.zhifa.activity.ImageDetailActivity;
 import com.zun.zhifa.constants.SettingConstants;
 
+import java.util.ArrayList;
+
 public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.ViewHolder> {
     private Context mContext;
     private int cardViewWidth;
     private int cardViewHeight;
     public int deviceWidth;
-    private Integer[] mThumbIds = {
-            R.drawable.res1,
-            R.drawable.res2,
-            R.drawable.res3,
-            R.drawable.res4,
-            R.drawable.res5,
-            R.drawable.res1,
-            R.drawable.res2
-    };
+    private ArrayList<Integer> mThumbIds;
 
     public ImageCardAdapter(Context c){
         mContext = c;
+        mThumbIds = new ArrayList<>();
+        mThumbIds.add(R.drawable.fs41);
+        mThumbIds.add(R.drawable.fs48);
+        mThumbIds.add(R.drawable.fs50);
+        mThumbIds.add(R.drawable.ms17);
+        mThumbIds.add(R.drawable.ms18);
+        mThumbIds.add(R.drawable.ms4);
+        mThumbIds.add(R.drawable.ms9);
     }
 
     public ImageCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -51,21 +53,24 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
 
 
     public void onBindViewHolder(ViewHolder holder, int position){
-        holder.imageView.setImageResource(mThumbIds[position]);
+        holder.imageView.setImageResource(mThumbIds.get(position));
         holder.itemView.setTag(position);
+        holder.favorBtn.setTag(position);
+        holder.deleteBtn.setTag(position);
     }
 
     public long getItemId(int position){
-        return mThumbIds[position];
+        return mThumbIds.get(position);
     }
     public int getItemCount(){
-        return mThumbIds.length;
+        return mThumbIds.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private ImageButton favorBtn;
         private ImageButton deleteBtn;
+        private int pos;
 
         public ViewHolder(View v){
             super(v);
@@ -74,14 +79,15 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
             this.deleteBtn = (ImageButton)v.findViewById(R.id.main_delete_btn);
 
             int imgWidth, imgHeight;
-            imgWidth = imgHeight = cardViewWidth;
+            imgWidth = cardViewWidth;
+            imgHeight = cardViewWidth;
             this.imageView.setLayoutParams(new RelativeLayout.LayoutParams(imgWidth, imgHeight));
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, ImageDetailActivity.class);
-                    int id = mThumbIds[(int)v.getTag()];
+                    int id = mThumbIds.get((int)v.getTag());
                     intent.putExtra(ImageDetailActivity.IMAGE_RES_ID, id);
                     mContext.startActivity(intent);
                 }
@@ -92,10 +98,21 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
                 @Override
                 public void onClick(View v) {
                     if(!clicked) {
-
+                        favorBtn.setColorFilter(android.R.color.holo_red_dark);
+                        clicked = true;
                     }else{
                         favorBtn.setBackgroundColor(Color.TRANSPARENT);
                     }
+                }
+            });
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = (int)v.getTag();
+                    mThumbIds.remove(id);
+                    notifyItemRemoved(id);
+                    notifyItemRangeChanged(0, mThumbIds.size()-2);
                 }
             });
         }

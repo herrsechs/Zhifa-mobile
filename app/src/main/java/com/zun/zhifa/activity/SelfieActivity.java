@@ -49,8 +49,8 @@ public class SelfieActivity extends AppCompatActivity {
             requestPermissions(new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }else{
-            Toast.makeText(SelfieActivity.this, "请先取得文件读写权限", Toast.LENGTH_SHORT).show();
-            finish();
+//            Toast.makeText(SelfieActivity.this, "请先取得文件读写权限", Toast.LENGTH_SHORT).show();
+//            finish();
         }
 
         if(selfieBmp != null && selfieImgView != null){

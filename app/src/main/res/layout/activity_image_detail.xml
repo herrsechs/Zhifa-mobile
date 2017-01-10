@@ -9,23 +9,11 @@
         android:layout_height="300dp"
         android:src="@drawable/res1"
         android:id="@+id/image_detail_image_view"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/image_detail_image_view_desc"
         android:layout_marginTop="47dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/image_detail_delete_btn"
-        android:contentDescription="@string/delete_btn_desc"
-        android:src="@drawable/delete"
-        android:scaleType="fitXY"
-        android:tint="@color/background_material_dark"
-        android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/image_detail_favor_btn"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -36,7 +24,6 @@
         android:textSize="12sp"
         android:layout_below="@+id/image_detail_image_view"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/image_detail_delete_btn"
         android:paddingTop="5dp"/>
 
     <TextView
@@ -45,9 +32,8 @@
         android:text="20 likes"
         android:id="@+id/image_detail_likes_count"
         android:textSize="15sp"
-        android:layout_alignBottom="@+id/image_detail_favor_btn"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/image_detail_desc_text" />
+        android:layout_alignTop="@+id/image_detail_favor_btn"
+        android:layout_alignEnd="@+id/listView" />
 
 
     <TextView
@@ -88,16 +74,15 @@
         android:scaleType="fitXY"
         android:tint="@android:color/darker_gray"
         android:background="@android:color/transparent"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="58dp"
-        android:layout_below="@+id/image_detail_image_view"
-        android:layout_toEndOf="@+id/image_detail_delete_btn" />
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/image_detail_desc_text"
+        android:layout_alignParentStart="true" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:id="@+id/listView"
-        android:layout_below="@+id/image_detail_delete_btn" />
+        android:layout_below="@+id/image_detail_favor_btn"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

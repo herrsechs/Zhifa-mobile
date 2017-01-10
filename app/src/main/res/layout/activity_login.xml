@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:layout_width="303dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/login_username"
         android:hint="账户"
@@ -15,7 +15,7 @@
         android:layout_marginTop="155dp" />
 
     <EditText
-        android:layout_width="301dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
@@ -48,7 +48,7 @@
         android:src="@drawable/launcher"
         android:id="@+id/login_logo"
         android:scaleType="fitXY"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

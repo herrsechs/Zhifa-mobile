@@ -1,5 +1,6 @@
 package com.zun.zhifa.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d("TEST", "STRING");
-                    Toast.makeText(LoginActivity.this, "Click", Toast.LENGTH_SHORT).show();
                     Account accnt = new Account();
                     if(usnTxt != null) {
                         accnt.username = usnTxt.getText().toString();
@@ -43,6 +43,17 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     accnt.role = "Customer";
                     AccountUtil.login(accnt, LoginActivity.this);
+                }
+            });
+        }
+
+        if(registBtn != null){
+            registBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }
