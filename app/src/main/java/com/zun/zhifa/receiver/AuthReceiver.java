@@ -14,7 +14,7 @@ public class AuthReceiver extends BroadcastReceiver {
     private static final String TAG = ".receiver.AuthReceiver";
     @Override
     public void onReceive(final Context context, Intent intent){
-        String result = intent.getExtras().getString(AccountUtil.AUTH_RESULT_KEY);
+        String result = intent.getExtras().getString(AccountUtil.AUTH_LOGIN_RESULT_KEY);
         Log.d(TAG, result);
         if("success".equals(result)){
             Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();

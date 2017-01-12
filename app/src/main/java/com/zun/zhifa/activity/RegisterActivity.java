@@ -9,30 +9,84 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.zun.zhifa.R;
+import com.zun.zhifa.httputil.AccountUtil;
+import com.zun.zhifa.httputil.HttpUtil;
+import com.zun.zhifa.model.Account;
+
+import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity{
     public static final String TAG = ".RegisterActivity";
+    EditText usnText;
+    EditText pwdText;
+    EditText cfmPwdText;
+
+    Spinner roleSpin;
+    Spinner genderSpin;
+    Spinner haircutSpin;
+
+    Button clearBtn;
+    Button submitBtn;
 
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_register);
 
-        EditText usnText = (EditText)findViewById(R.id.register_username_input);
-        EditText pwdText = (EditText)findViewById(R.id.register_password_input);
-        EditText cfmPwdText = (EditText)findViewById(R.id.register_confirm_pwd);
+        if(init()){
+            setListener();
+        }
 
-        Spinner roleSpin = (Spinner)findViewById(R.id.register_role_spinner);
-        Spinner genderSpin = (Spinner)findViewById(R.id.register_gender_spinner);
-        Spinner haircutSpin = (Spinner)findViewById(R.id.register_haircut_spinner);
+    }
 
-        Button clearBtn = (Button)findViewById(R.id.register_clear_btn);
-        Button submitBtn = (Button)findViewById(R.id.register_submit_btn);
+    private Boolean init(){
+        Boolean result = false;
+        try {
+            usnText = (EditText) findViewById(R.id.register_username_input);
+            pwdText = (EditText) findViewById(R.id.register_password_input);
+            cfmPwdText = (EditText) findViewById(R.id.register_confirm_pwd);
 
+            roleSpin = (Spinner) findViewById(R.id.register_role_spinner);
+            genderSpin = (Spinner) findViewById(R.id.register_gender_spinner);
+            haircutSpin = (Spinner) findViewById(R.id.register_haircut_spinner);
+
+            clearBtn = (Button) findViewById(R.id.register_clear_btn);
+            submitBtn = (Button) findViewById(R.id.register_submit_btn);
+            result = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "Fail to initialize");
+        }
+        return result;
+    }
+
+
+    private void setListener(){
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account account = new Account();
+                account.username = usnText.getText().toString();
+                account.password = pwdText.getText().toString();
+                account.role = roleSpin.getSelectedItem().toString();
+                account.gender = roleSpin.getSelectedItem().toString();
+                AccountUtil.register(account, RegisterActivity.this);
+            }
+        });
 
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usnText.getText().clear();
+                pwdText.getText().clear();
+                cfmPwdText.getText().clear();
+
+                roleSpin.setSelection(0);
+                genderSpin.setSelection(0);
+                haircutSpin.setSelection(0);
             }
         });
     }
+
+
 }

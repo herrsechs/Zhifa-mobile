@@ -31,7 +31,7 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         ImageView imgView = (ImageView)findViewById(R.id.image_detail_image_view);
         ImageButton favorBtn = (ImageButton)findViewById(R.id.image_detail_favor_btn);
-        ImageButton delBtn = (ImageButton)findViewById(R.id.image_detail_delete_btn);
+//        ImageButton delBtn = (ImageButton)findViewById(R.id.image_detail_delete_btn);
 
         int imgId = getIntent().getExtras().getInt(IMAGE_RES_ID);
         if(imgView != null) {

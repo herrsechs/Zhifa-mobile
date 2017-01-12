@@ -23,6 +23,9 @@
     <string name="profile_user_haircut">发型</string>
     <string name="search_hint">搜索发型</string>
 
+    <string name="barber_upload_confirm">Upload</string>
+    <string name="barber_upload_redo">Redo</string>
+
     <string name="haircut_img_trans">HAIRCUT_IMAGE_TRANS</string>
     <string name="favor_btn_trans">FAVOR_BTN_TRANS</string>
     <string name="del_btn_trans">DELETE_BTN_TRANS</string>

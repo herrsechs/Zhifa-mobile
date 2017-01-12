@@ -19,6 +19,12 @@
                 <action android:name="AUTH"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".receiver.RegisterReceiver"
+                  android:permission="zhifa.authetication">
+            <intent-filter>
+                <action android:name="REGISTER"/>
+            </intent-filter>
+        </receiver>
         <activity android:name=".activity.MainActivity">
 
         </activity>
