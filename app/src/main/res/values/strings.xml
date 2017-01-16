@@ -23,8 +23,12 @@
     <string name="profile_user_haircut">发型</string>
     <string name="search_hint">搜索发型</string>
 
-    <string name="barber_upload_confirm">Upload</string>
-    <string name="barber_upload_redo">Redo</string>
+    <string name="barber_upload_confirm">上传</string>
+    <string name="barber_upload_redo">重拍</string>
+    <string name="barber_main_upload">上传新发型</string>
+    <string name="barber_main_push">推送消息</string>
+    <string name="barber_main_trend">流行趋势</string>
+    <string name="barber_main_push_hint">编辑推送信息。。。</string>
 
     <string name="haircut_img_trans">HAIRCUT_IMAGE_TRANS</string>
     <string name="favor_btn_trans">FAVOR_BTN_TRANS</string>

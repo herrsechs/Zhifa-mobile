@@ -40,6 +40,14 @@
         </activity>
         <activity android:name=".activity.ProfileActivity">
         </activity>
+        <activity android:name=".activity.BarberMainActivity">
+        </activity>
+        <activity android:name=".activity.BarberUploadActivity">
+        </activity>
+        <activity android:name=".activity.BarberPushActivity">
+        </activity>
+        <activity android:name=".activity.BarberTrendActivity">
+        </activity>
         <activity android:name=".activity.SearchableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
