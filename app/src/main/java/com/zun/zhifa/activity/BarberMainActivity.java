@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.zun.zhifa.R;
+import com.zun.zhifa.httputil.BarberUtil;
 
 public class BarberMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+        preInitUI();
         setContentView(R.layout.activity_barber_main);
 
         RelativeLayout uploadRL = (RelativeLayout)findViewById(R.id.barber_main_upload_haircut);
@@ -44,5 +46,9 @@ public class BarberMainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void preInitUI() {
+        // Get info from server in advance
+        BarberUtil.getTrendItemsFromServer(this);
     }
 }

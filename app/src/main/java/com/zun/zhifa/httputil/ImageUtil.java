@@ -18,12 +18,14 @@ import okhttp3.Response;
 
 public class ImageUtil {
     public static String IMAGE_TRANS_RESULT_KEY = "IMAGE_TRANS";
+    private static final String TAG = ".httputil.ImageUtil";
     public static void uploadSelfie(Image image, Context context){
         JSONObject jsonObj = new JSONObject();
         try {
             jsonObj.put("IMG_TYPE", "selfie_img");
             jsonObj.put("ID_TYPE", "cid");
             jsonObj.put("ID", image.cid);
+            jsonObj.put("IMG_NAME", image.filename);
         }catch (JSONException e){
             e.printStackTrace();
         }
@@ -36,7 +38,8 @@ public class ImageUtil {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                String msg = response.body().string();
+                Log.d(TAG, response.body().string());
             }
         };
 

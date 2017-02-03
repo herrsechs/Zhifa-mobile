@@ -7,4 +7,5 @@ public class HttpConstants {
 
     public static final String UPLOAD_SELFIE = SERVER + "/img/upload_selfie_img/";
     public static final String CHANGE_FACE = SERVER + "/img/change_face/";
+    public static final String GET_TREND_ITEMS = SERVER + "/barber/get_trend_items/";
 }

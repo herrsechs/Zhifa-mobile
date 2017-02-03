@@ -66,10 +66,15 @@ public class SelfieActivity extends AppCompatActivity {
                     intent.putExtra(MainActivity.FRAGMENT_TAG, R.id.tab_collection);
                     ChangingFaceFragment.selfieBmp = selfieBmp;
                     String path = saveBitmap(selfieBmp);
+                    char pathSeparator = '/';
+                    int sepPos = path.lastIndexOf(pathSeparator);
+                    int endPos = path.length();
+                    String filename = path.substring(sepPos + 1, endPos);
                     if(path != null) {
                         Image img = new Image();
                         img.cid = "1";
                         img.path = path;
+                        img.filename = filename;
                         ImageUtil.uploadSelfie(img, SelfieActivity.this);
                     }
                     startActivity(intent);

@@ -34,6 +34,15 @@ public class HttpUtil {
         client = new OkHttpClient();
     }
 
+    public static Response syncPostJson(String url, String json) throws IOException {
+        if (client == null) {
+            init();
+        }
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().url(url).post(body).build();
+        return client.newCall(request).execute();
+    }
+
     public static void postJSON(String url, String json, Callback callback) throws IOException{
         if(client == null){
             init();
@@ -52,11 +61,12 @@ public class HttpUtil {
         }
 
         File uploadImg = new File(imgPath);
-        renameFile(uploadImg);
 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addPart(
-                Headers.of("Content-Disposition", "form-data; name=\"" + form.getString("IMG_TYPE") +"\""),
+                Headers.of("Content-Disposition", "form-data; name=\"" +
+                        form.getString("IMG_TYPE") +"\"; filename=\"" +
+                        form.getString("IMG_NAME")+"\""),
                 RequestBody.create(IMG_TYPE, uploadImg)
         );
 
@@ -106,10 +116,16 @@ public class HttpUtil {
     }
 
     public static void renameFile(File f) {
-        String path = f.getAbsolutePath();
-        String name = getTimeStampString();
+        String fullPath = f.getAbsolutePath();
+        char pathSeparator = '/';
+        int sepPos = fullPath.lastIndexOf(pathSeparator);
+        int endPos = fullPath.length();
+        String filename = fullPath.substring(sepPos + 1, endPos);
+        filename = "zhifa" + filename;
+        String path = fullPath.substring(0, sepPos + 1);
+
         try {
-            File newF = new File(path + "/" + name);
+            File newF = new File(path + filename);
             f.renameTo(newF);
         } catch (Exception e){
             e.printStackTrace();

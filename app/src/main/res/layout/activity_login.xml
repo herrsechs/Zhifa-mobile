@@ -51,4 +51,13 @@
         android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="理发师模式"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_btn"
+        android:layout_alignEnd="@+id/register_btn"
+        android:layout_marginTop="43dp"
+        android:id="@+id/login_barber_mode" />
 </RelativeLayout>

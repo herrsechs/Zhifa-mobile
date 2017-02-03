@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginBtn = (Button)findViewById(R.id.login_btn);
         Button registBtn = (Button)findViewById(R.id.register_btn);
+        Button barberModeBtn = (Button)findViewById(R.id.login_barber_mode);
         usnTxt = (EditText)findViewById(R.id.login_username);
         pwdTxt = (EditText)findViewById(R.id.login_password);
         Log.d("TEST", "A STRING");
@@ -58,7 +59,16 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-
+        if(barberModeBtn != null) {
+            barberModeBtn.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    Intent intent = new Intent(LoginActivity.this, BarberMainActivity.class);
+                    startActivity(intent);
+//                    finish();
+                }
+            }
+            );
+        }
     }
 
 }
