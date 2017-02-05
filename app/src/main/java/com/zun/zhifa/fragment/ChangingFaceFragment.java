@@ -3,6 +3,7 @@ package com.zun.zhifa.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.ImageFilterConstants;
+import com.zun.zhifa.constants.SettingConstants;
 import com.zun.zhifa.httputil.ImageUtil;
 
 import jp.co.cyberagent.android.gpuimage.GPUImage;
@@ -36,6 +38,7 @@ public class ChangingFaceFragment  extends Fragment{
         final Activity act = getActivity();
 
         final ImageView mergeFaceView = (ImageView)act.findViewById(R.id.change_face_merging_image_view);
+        ImageView haircutView = (ImageView)act.findViewById(R.id.changing_face_haircut_image);
         Button normalBtn = (Button)act.findViewById(R.id.change_face_normal_btn);
         Button sketchBtn = (Button)act.findViewById(R.id.change_face_sketch_btn);
         Button softLightBtn = (Button)act.findViewById(R.id.change_face_soft_light_btn);
@@ -44,6 +47,7 @@ public class ChangingFaceFragment  extends Fragment{
         if(mergeFaceView != null && selfieBmp != null){
             mergeFaceView.setImageBitmap(selfieBmp);
         }
+
 
         if(normalBtn != null){
             normalBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +91,11 @@ public class ChangingFaceFragment  extends Fragment{
             mergeFaceView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageUtil.downloadChangedFace(act);
+                    SharedPreferences sp = act.getSharedPreferences(SettingConstants.SP_CHANGE_FACE_KEY,
+                            Context.MODE_PRIVATE);
+                    int hid = sp.getInt(SettingConstants.SP_HAIRCUT_KEY, 0);
+                    int sid = sp.getInt(SettingConstants.SP_SELFIE_KEY, 0);
+                    ImageUtil.downloadChangedFace(act, hid, sid, mergeFaceView);
                 }
             });
         }
