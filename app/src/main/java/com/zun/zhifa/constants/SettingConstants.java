@@ -11,6 +11,9 @@ public class SettingConstants {
     public static final String SP_CHANGE_FACE_KEY = "CHANGE_FACE";
     public static final String SP_HAIRCUT_KEY = "HAIRCUT";
     public static final String SP_SELFIE_KEY = "SELFIE";
+    public static final String SP_ACCOUNT_KEY = "ACCOUNT";
+    public static final String SP_BARBER_KEY = "BARBER";
+    public static final String SP_CUSTOMER_KEY = "CUSTOMER";
 
     public static final int CODE_GALLERY_REQUEST = 0xa0;
     public static final int CODE_CAMERA_REQUEST = 0xa1;

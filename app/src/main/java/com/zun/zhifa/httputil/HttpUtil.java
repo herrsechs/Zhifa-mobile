@@ -79,8 +79,12 @@ public class HttpUtil {
 
         if(form.has("ROLE")){
             builder.addPart(
-                Headers.of("Content-Disposition", "form-data; name=\"role\""),
-                RequestBody.create(null, form.getString("ROLE"))
+                Headers.of("Content-Disposition", "form-data; name=\"gender\""),
+                RequestBody.create(null, form.getString("GENDER"))
+            );
+            builder.addPart(
+                Headers.of("Content-Disposition", "form-data; name=\"type\""),
+                RequestBody.create(null, form.getString("TYPE"))
             );
         }
 
@@ -88,18 +92,6 @@ public class HttpUtil {
         Request request = new Request.Builder().url(url).post(body).build();
 
         client.newCall(request).enqueue(callback);
-        new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, response.body().string());
-            }
-        };
-
     }
 
     public static String getTimeStampString(){

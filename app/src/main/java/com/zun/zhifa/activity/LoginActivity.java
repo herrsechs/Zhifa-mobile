@@ -1,6 +1,8 @@
 package com.zun.zhifa.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zun.zhifa.R;
+import com.zun.zhifa.constants.SettingConstants;
 import com.zun.zhifa.httputil.AccountUtil;
 import com.zun.zhifa.model.Account;
 
@@ -62,6 +65,11 @@ public class LoginActivity extends AppCompatActivity {
         if(barberModeBtn != null) {
             barberModeBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
+                    SharedPreferences sp = getSharedPreferences(
+                            SettingConstants.SP_ACCOUNT_KEY, Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putInt(SettingConstants.SP_BARBER_KEY, 1);
+                    edit.apply();
                     Intent intent = new Intent(LoginActivity.this, BarberMainActivity.class);
                     startActivity(intent);
 //                    finish();

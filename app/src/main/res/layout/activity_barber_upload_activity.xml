@@ -7,19 +7,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         card_view:cardCornerRadius="4dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:id="@+id/cardView">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
-                android:layout_width="300dp"
-                android:layout_height="500dp"
                 android:src="@drawable/launcher"
                 android:scaleType="centerCrop"
-                android:id="@+id/selfie_image_view"
+                android:id="@+id/barber_upload_image_view"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="46dp"
+                android:layout_height="300dp"
+                android:layout_width="200dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp" />
 
             <Button
                 android:text="@string/barber_upload_confirm"
@@ -27,9 +33,11 @@
                 android:textColor="@android:color/white"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:layout_alignTop="@+id/selfie_camera_btn"
-                android:layout_alignEnd="@+id/selfie_image_view"
-                android:id="@+id/selfie_confirm_btn" />
+
+                android:id="@+id/barber_upload_confirm_btn"
+                android:layout_alignBottom="@+id/barber_upload_gallery_btn"
+                android:layout_toEndOf="@+id/barber_upload_image_view"
+                android:layout_alignTop="@+id/barber_upload_gallery_btn" />
 
             <Button
                 android:text="@string/barber_upload_redo"
@@ -37,9 +45,49 @@
                 android:textColor="@android:color/white"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:id="@+id/selfie_camera_btn"
-                android:layout_below="@+id/selfie_image_view"
-                android:layout_alignStart="@+id/selfie_image_view" />
+                android:id="@+id/barber_upload_gallery_btn"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/barber_upload_image_view"
+                android:layout_marginBottom="65dp" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="性别"
+                android:ems="10"
+                android:id="@+id/barber_upload_gender_text"
+                android:layout_alignTop="@+id/barber_upload_image_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="11dp" />
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:entries="@array/gender_entry"
+                android:id="@+id/barber_upload_gender_spinner"
+                android:layout_below="@+id/barber_upload_gender_text"
+                android:layout_alignStart="@+id/barber_upload_gender_text" />
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="发型"
+                android:ems="10"
+                android:layout_marginTop="27dp"
+                android:id="@+id/barber_upload_haircut_text"
+                android:layout_below="@+id/barber_upload_gender_spinner"
+                android:layout_alignStart="@+id/barber_upload_gender_spinner" />
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:entries="@array/hair_entry"
+                android:id="@+id/barber_upload_haircut_spinner"
+                android:layout_below="@+id/barber_upload_haircut_text"
+                android:layout_alignStart="@+id/barber_upload_haircut_text" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
 </RelativeLayout>

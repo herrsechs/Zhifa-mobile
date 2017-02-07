@@ -6,3 +6,4 @@ public class Image {
     public String path; // Storage location
     public String filename;
 }
+

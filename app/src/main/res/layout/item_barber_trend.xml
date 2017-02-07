@@ -23,8 +23,8 @@
             android:id="@+id/item_barber_trend_number_text" />
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/launcher"
             android:id="@+id/item_barber_trend_haircut_image"
             android:layout_centerVertical="true"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_barber_trend_barber_name"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/item_barber_trend_haircut_image" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

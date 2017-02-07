@@ -82,5 +82,19 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/background_light"
+            android:id="@+id/barber_main_gallery">
+            <TextView
+                android:layout_width="285dp"
+                android:layout_height="50dp"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:text="@string/barber_main_gallery"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
