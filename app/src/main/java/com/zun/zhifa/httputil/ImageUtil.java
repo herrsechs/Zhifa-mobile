@@ -73,7 +73,6 @@ public class ImageUtil {
             e.printStackTrace();
         }
     }
-
     public static void downloadChangedFace(final Context context, int hid, int sid, final ImageView view){
         JSONObject jsonObj = new JSONObject();
         try{
@@ -112,4 +111,5 @@ public class ImageUtil {
             e.printStackTrace();
         }
     }
+
 }

@@ -25,15 +25,17 @@ import okhttp3.Response;
 
 public class BarberUtil {
     private static final String TAG = ".httputil.BarberUtil";
-    private static volatile Boolean fileFreshed = false;
-    private static final String FILENAME = "trendItems.txt";
+    private static volatile Boolean trendFileFreshed = false;
+    private static volatile Boolean haircutFileFreshed = false;
+    private static final String TREND_FILENAME = "trendItems.txt";
+    private static final String HAIRCUT_FILENAME = "haircutIds.txt";
 
     public static String getTrendItems(final Context context) {
         String result = "";
-        if (fileFreshed) {
+        if (trendFileFreshed) {
 
             try {
-                File f = new File(context.getFilesDir().getPath() + FILENAME);
+                File f = new File(context.getFilesDir().getPath() + TREND_FILENAME);
                 if (f.exists()) {
                     FileInputStream fin = new FileInputStream(f);
                     StringBuilder builder = new StringBuilder();
@@ -43,7 +45,7 @@ public class BarberUtil {
                     }
                     result += builder.toString();
                     fin.close();
-                    fileFreshed = false;
+                    trendFileFreshed = false;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -66,7 +68,7 @@ public class BarberUtil {
             public void onResponse(Call call, Response response){
                 try {
                     String jsonStr = response.body().string();
-                    File f = new File(context.getFilesDir().getPath() + FILENAME);
+                    File f = new File(context.getFilesDir().getPath() + TREND_FILENAME);
                     Boolean fileExists = f.exists() || f.createNewFile();
 
                     if (fileExists) {
@@ -74,7 +76,7 @@ public class BarberUtil {
                         byte[] bts = jsonStr.getBytes();
                         fout.write(bts);
                         fout.close();
-                        fileFreshed = true;
+                        trendFileFreshed = true;
                     }
                 } catch ( IOException e) {
                     e.printStackTrace();
@@ -133,6 +135,74 @@ public class BarberUtil {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d(TAG, "Error when post http");
+        }
+    }
+    public static String getHaircutIds(final Context context) {
+        String result = "";
+        if (haircutFileFreshed) {
+
+            try {
+                File f = new File(context.getFilesDir().getPath() + HAIRCUT_FILENAME);
+                if (f.exists()) {
+                    FileInputStream fin = new FileInputStream(f);
+                    StringBuilder builder = new StringBuilder();
+                    int ch;
+                    while((ch = fin.read()) != -1) {
+                        builder.append((char)ch);
+                    }
+                    result += builder.toString();
+                    fin.close();
+                    haircutFileFreshed = false;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d(TAG, "Error when reading file");
+            }
+        } else {
+            getHaircutIdsFromServer(context);
+        }
+        return result;
+    }
+    public static void getHaircutIdsFromServer(final Context context){
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonStr = response.body().string();
+                    File f = new File(context.getFilesDir().getPath() + HAIRCUT_FILENAME);
+                    Boolean fileExists = f.exists() || f.createNewFile();
+
+                    if (fileExists) {
+                        FileOutputStream fout = new FileOutputStream(f);
+                        byte[] bts = jsonStr.getBytes();
+                        fout.write(bts);
+                        fout.close();
+                        haircutFileFreshed = true;
+                    }
+                } catch ( IOException e) {
+                    e.printStackTrace();
+                    Log.d(TAG, "Error when doing file operation");
+                }
+            }
+        };
+        SharedPreferences sp = context.getSharedPreferences(
+                SettingConstants.SP_ACCOUNT_KEY, Activity.MODE_PRIVATE);
+        int bid = sp.getInt(SettingConstants.SP_BARBER_KEY, 0);
+
+        try {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("barber_id", bid);
+            String jsonStr = jsonObj.toString();
+            HttpUtil.postJSON(HttpConstants.GET_HAIRCUT_IDS_OF_BARBER, jsonStr, callback);
+        }
+        catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error when postJson");
         }
     }
 }

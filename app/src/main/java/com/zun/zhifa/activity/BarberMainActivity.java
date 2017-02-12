@@ -18,6 +18,7 @@ public class BarberMainActivity extends AppCompatActivity {
         RelativeLayout uploadRL = (RelativeLayout)findViewById(R.id.barber_main_upload_haircut);
         RelativeLayout pushRL = (RelativeLayout)findViewById(R.id.barber_main_push);
         RelativeLayout trendRL = (RelativeLayout)findViewById(R.id.barber_main_trend);
+        RelativeLayout haircutsRL = (RelativeLayout)findViewById(R.id.barber_main_gallery);
 
         if (uploadRL != null) {
             uploadRL.setOnClickListener(new View.OnClickListener(){
@@ -46,9 +47,19 @@ public class BarberMainActivity extends AppCompatActivity {
                 }
             });
         }
+        if (haircutsRL != null) {
+            haircutsRL.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    Intent intent = new Intent(BarberMainActivity.this,
+                            BarberHaircutsActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
     private void preInitUI() {
         // Get info from server in advance
         BarberUtil.getTrendItemsFromServer(this);
+        BarberUtil.getHaircutIdsFromServer(this);
     }
 }

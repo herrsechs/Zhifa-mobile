@@ -9,4 +9,7 @@ public class HttpConstants {
     public static final String UPLOAD_HAIRCUT = SERVER + "/img/upload_hair_img/";
     public static final String CHANGE_FACE = SERVER + "/img/change_face/";
     public static final String GET_TREND_ITEMS = SERVER + "/barber/get_trend_items/";
+    public static final String GET_HAIRCUT_IDS_OF_BARBER = SERVER +
+            "/barber/get_barber_haircut_gallery/";
+    public static final String GET_HAIRCUT = SERVER + "/img/get_hair_img/";
 }
