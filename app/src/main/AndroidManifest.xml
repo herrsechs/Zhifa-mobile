@@ -50,6 +50,8 @@
         </activity>
         <activity android:name=".activity.BarberHaircutsActivity">
         </activity>
+        <activity android:name=".activity.UserMessageActivity">
+        </activity>
         <activity android:name=".activity.SearchableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>

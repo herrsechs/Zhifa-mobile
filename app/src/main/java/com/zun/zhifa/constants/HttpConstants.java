@@ -12,4 +12,6 @@ public class HttpConstants {
     public static final String GET_HAIRCUT_IDS_OF_BARBER = SERVER +
             "/barber/get_barber_haircut_gallery/";
     public static final String GET_HAIRCUT = SERVER + "/img/get_hair_img/";
+    public static final String GET_CUSTOMER_MESSAGE = SERVER +
+            "/social/get_customer_message";
 }

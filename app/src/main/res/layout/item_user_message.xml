@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    card_view:cardCornerRadius="4dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/launcher"
+            android:id="@+id/item_user_msg_head_image"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="28dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:textSize="20sp"
+            android:id="@+id/item_user_msg_barber_name"
+            android:text="Barber name"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/item_user_msg_head_image"
+            android:layout_marginStart="18dp" />
+
+        <TextView
+            android:layout_height="70dp"
+            android:layout_width="260dp"
+            android:id="@+id/item_user_msg_text"
+            android:textSize="18sp"
+            android:layout_marginTop="11dp"
+            android:text="Message content"
+            android:layout_below="@+id/item_user_msg_barber_name"
+            android:layout_alignStart="@+id/item_user_msg_barber_name" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

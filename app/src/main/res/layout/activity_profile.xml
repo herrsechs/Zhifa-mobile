@@ -116,6 +116,24 @@
                 android:src="@drawable/icon_document"
                 android:layout_marginStart="35dp"/>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/background_light"
+            android:id="@+id/profile_user_message">
+            <TextView
+                android:layout_width="285dp"
+                android:layout_height="50dp"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:text="@string/profile_user_message"
+                android:layout_alignParentEnd="true"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35dp"/>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout

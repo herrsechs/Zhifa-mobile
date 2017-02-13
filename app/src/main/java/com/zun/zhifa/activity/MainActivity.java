@@ -1,6 +1,7 @@
 package com.zun.zhifa.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
@@ -8,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sp = getSharedPreferences(
+                SettingConstants.SP_ACCOUNT_KEY, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putInt(SettingConstants.SP_CUSTOMER_KEY, 1);
+        edit.apply();
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
