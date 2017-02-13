@@ -13,5 +13,6 @@ public class HttpConstants {
             "/barber/get_barber_haircut_gallery/";
     public static final String GET_HAIRCUT = SERVER + "/img/get_hair_img/";
     public static final String GET_CUSTOMER_MESSAGE = SERVER +
-            "/social/get_customer_message";
+            "/social/get_customer_message/";
+    public static final String UPLOAD_MESSAGE = SERVER + "/social/upload_barber_message";
 }

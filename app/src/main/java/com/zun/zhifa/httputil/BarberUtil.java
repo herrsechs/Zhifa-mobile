@@ -163,6 +163,33 @@ public class BarberUtil {
         }
         return result;
     }
+    public static void uploadMesssage(final Context context, String msg){
+        SharedPreferences sp = context.getSharedPreferences(
+                SettingConstants.SP_ACCOUNT_KEY, Activity.MODE_PRIVATE);
+        int bid = sp.getInt(SettingConstants.SP_BARBER_KEY, 0);
+
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(context, "上传失败！", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Toast.makeText(context, "上传成功！", Toast.LENGTH_LONG).show();
+            }
+        };
+
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("text", msg);
+            jsonObj.put("bid", bid);
+            String jsonStr = jsonObj.toString();
+            HttpUtil.postJSON(HttpConstants.UPLOAD_MESSAGE, jsonStr, callback);
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void getHaircutIdsFromServer(final Context context){
         Callback callback = new Callback() {
             @Override

@@ -8,7 +8,7 @@
         android:layout_height="150dp"
         android:layout_gravity="center_vertical"
         android:hint="@string/barber_main_push_hint"
-        android:id="@+id/register_username_input"
+        android:id="@+id/barber_push_edit_box"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -16,7 +16,7 @@
         android:text="@string/barber_push_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_username_input"
+        android:layout_below="@+id/barber_push_edit_box"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="31dp"
         android:layout_marginTop="20dp"
