@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 
 import com.zun.zhifa.R;
 import com.zun.zhifa.constants.SettingConstants;
+import com.zun.zhifa.httputil.UserUtil;
 
 import java.io.File;
 
@@ -28,7 +29,7 @@ public class OpeningActivity extends AppCompatActivity {
 
         initSetting();
         initFolder();
-
+        preInit();
 
         new AsyncTask<Void, Void, Integer>(){
             @Override
@@ -82,6 +83,10 @@ public class OpeningActivity extends AppCompatActivity {
         if(!dir.exists()){
             dir.mkdir();
         }
+    }
+
+    private void preInit(){
+        UserUtil.getRecHaircutsFromServer(OpeningActivity.this);
     }
 
     protected Integer loadingCache(){

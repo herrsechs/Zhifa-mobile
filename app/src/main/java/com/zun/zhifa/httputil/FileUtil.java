@@ -3,10 +3,16 @@ package com.zun.zhifa.httputil;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class FileUtil {
     public static Boolean hasSDcard() {
@@ -82,6 +88,59 @@ public class FileUtil {
             fos.flush();
             fos.close();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getFromCache(final Context context, final String filename) {
+        String result = "";
+        try {
+            File f = new File(context.getFilesDir().getPath() + filename);
+            if (f.exists()) {
+                FileInputStream fin = new FileInputStream(f);
+                StringBuilder builder = new StringBuilder();
+                int ch;
+                while((ch = fin.read()) != -1) {
+                    builder.append((char)ch);
+                }
+                result += builder.toString();
+                fin.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static void getFromServer(final Context context, final String filename,
+                                     String url, final String jsonStr) {
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response){
+                try {
+                    String jsonStr = response.body().string();
+                    File f = new File(context.getFilesDir().getPath() + filename);
+                    Boolean fileExists = f.exists() || f.createNewFile();
+
+                    if (fileExists) {
+                        FileOutputStream fout = new FileOutputStream(f);
+                        byte[] bts = jsonStr.getBytes();
+                        fout.write(bts);
+                        fout.close();
+                    }
+                } catch ( IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        try {
+            HttpUtil.postJSON(url, jsonStr, callback);
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

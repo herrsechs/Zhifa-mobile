@@ -24,7 +24,26 @@ import okhttp3.Response;
 public class UserUtil {
     private static final String TAG = ".httputil.UserUtil";
     private static final String MESSAGE_FILENAME = "messages.txt";
+    private static final String REC_HAIRCUTS_FILENAME = "rec_hair.txt";
     private static volatile Boolean msgFileFreshed = false;
+
+    public static String getRecHaircuts(final Context c) {
+        return FileUtil.getFromCache(c, REC_HAIRCUTS_FILENAME);
+    }
+    public static void getRecHaircutsFromServer(final Context c) {
+        SharedPreferences sp = c.getSharedPreferences(SettingConstants.SP_ACCOUNT_KEY,
+                Activity.MODE_PRIVATE);
+        int cid = sp.getInt(SettingConstants.SP_CUSTOMER_KEY, 0);
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("cid", cid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String jsonStr = jsonObj.toString();
+        FileUtil.getFromServer(c, REC_HAIRCUTS_FILENAME,
+                HttpConstants.GET_RECOMMENDED_HAIRCUTS, jsonStr);
+    }
 
     public static String getMessages(final Context context){
         String result = "";
@@ -90,6 +109,34 @@ public class UserUtil {
             HttpUtil.postJSON(HttpConstants.GET_CUSTOMER_MESSAGE, jsonStr, callback);
         }
         catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void favorImage(final Context c, final int imageID) {
+        SharedPreferences sp = c.getSharedPreferences(SettingConstants.SP_ACCOUNT_KEY,
+                Activity.MODE_PRIVATE);
+        int cid = sp.getInt(SettingConstants.SP_CUSTOMER_KEY, 0);
+
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        };
+
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("cid", cid);
+            jsonObj.put("pid", imageID);
+            String jsonStr = jsonObj.toString();
+            HttpUtil.postJSON(HttpConstants.FAVOR_IMAGE, jsonStr, callback);
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
     }

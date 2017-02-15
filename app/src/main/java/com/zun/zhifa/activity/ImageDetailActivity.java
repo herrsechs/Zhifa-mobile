@@ -2,6 +2,7 @@ package com.zun.zhifa.activity;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -13,7 +14,13 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.zun.zhifa.R;
+import com.zun.zhifa.constants.HttpConstants;
 import com.zun.zhifa.fragment.CommentFragment;
+import com.zun.zhifa.httputil.ImageDownloader;
+import com.zun.zhifa.httputil.UserUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,19 +30,40 @@ import java.util.Map;
 public class ImageDetailActivity extends AppCompatActivity {
 
     public static final String IMAGE_RES_ID = "ImageID";
-
+    private ImageDownloader loader;
+    private int hair_id;
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_image_detail);
+        loader = new ImageDownloader(this);
 
-        ImageView imgView = (ImageView)findViewById(R.id.image_detail_image_view);
+        final ImageView imgView = (ImageView)findViewById(R.id.image_detail_image_view);
         ImageButton favorBtn = (ImageButton)findViewById(R.id.image_detail_favor_btn);
 //        ImageButton delBtn = (ImageButton)findViewById(R.id.image_detail_delete_btn);
 
         int imgId = getIntent().getExtras().getInt(IMAGE_RES_ID);
+        hair_id = imgId;
         if(imgView != null) {
-            imgView.setImageResource(imgId);
+//            imgView.setImageResource(imgId);
+            JSONObject jsonObj = new JSONObject();
+            try {
+                jsonObj.put("pid", imgId);
+                String jsonStr = jsonObj.toString();
+                Bitmap bmp = loader.getFromCache(jsonStr);
+                if (bmp == null) {
+                    loader.loadImage(HttpConstants.GET_HAIRCUT, jsonStr,
+                            0, 0, new ImageDownloader.AsyncImageLoaderListener(){
+                                public void onImageLoader(Bitmap bitmap) {
+                                    imgView.setImageBitmap(bitmap);
+                                }
+                            });
+                } else {
+                    imgView.setImageBitmap(bmp);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         ListView listView = (ListView)findViewById(R.id.listView);
@@ -46,7 +74,18 @@ public class ImageDetailActivity extends AppCompatActivity {
         if(listView != null) {
             listView.setAdapter(adapter);
         }
+
+        if (favorBtn != null) {
+            favorBtn.setOnClickListener(favorBtnLstnr);
+        }
     }
+
+    View.OnClickListener favorBtnLstnr = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            UserUtil.favorImage(ImageDetailActivity.this, hair_id);
+        }
+    };
 
 
     private List<Map<String, Object>> getData(){
