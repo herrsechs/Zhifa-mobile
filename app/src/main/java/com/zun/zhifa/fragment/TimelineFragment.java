@@ -2,6 +2,7 @@ package com.zun.zhifa.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,22 +15,39 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.roughike.bottombar.BottomBar;
 import com.zun.zhifa.R;
 import com.zun.zhifa.adapter.ImageCardAdapter;
+import com.zun.zhifa.constants.HttpConstants;
 import com.zun.zhifa.constants.SettingConstants;
+import com.zun.zhifa.httputil.HttpUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class TimelineFragment extends Fragment {
 //    private BottomBar bottomBar;
 //    private Toolbar toolbar;
     private FloatingActionButton fab;
+    private EditText searchInput;
+    ImageCardAdapter mAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         Log.d("onCreateView", "HERE");
@@ -46,7 +64,19 @@ public class TimelineFragment extends Fragment {
         final Activity act = getActivity();
         Log.d("onActivityCreated", "HERE");
         fab = (FloatingActionButton)act.findViewById(R.id.fab);
+        searchInput = (EditText)act.findViewById(R.id.fragment_search_input_box);
 
+        if (searchInput != null) {
+            searchInput.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        handleTextInput(act);
+                    }
+                    return false;
+                }
+            });
+        }
 
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
@@ -65,41 +95,57 @@ public class TimelineFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView)act.findViewById(R.id.timeline_view);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(act, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new ImageCardAdapter(act);
+        mAdapter = new ImageCardAdapter(act);
         mRecyclerView.setAdapter(mAdapter);
 
-//        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
-//            //            private boolean scrolling = false;
-//            private int SCROLL_THRESHOLD = 5;
-//            private int sum = 0;
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-//                Log.d("SCROLL_Y", "" + dy);
-//                if(dy > 0) {
-//                    sum += dy;
-//                }
-//                if(sum > SCROLL_THRESHOLD){
-//                    hide();
-//                    sum = 0;
-//                }else{
-//                    show();
-//                }
-//            }
-//
-//            public void hide(){
-////                toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
-////                bottomBar.animate().translationY(bottomBar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
-//                CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams)fab.getLayoutParams();
-//                int fabBottomMargin = lp.bottomMargin;
-//                fab.animate().translationY(fab.getHeight()+fabBottomMargin).setInterpolator(new AccelerateInterpolator(2)).start();
-//            }
-//
-//            public void show(){
-////                toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-////                bottomBar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-//                fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
-//            }
-//        });
     }
+
+    private void handleTextInput(final Activity a){
+        String gender = "";
+        String hair_len = "";
+        String text = searchInput.getText().toString();
+        if (text.contains("男")) {
+            gender = "male";
+        } else if (text.contains("女")) {
+            gender = "female";
+        }
+        if (text.contains("长")) {
+            hair_len = "long";
+        } else if (text.contains("短")) {
+            hair_len = "short";
+        }
+        if (!"".equals(gender) || !"".equals(hair_len)) {
+            try {
+                JSONObject jsonObj = new JSONObject();
+                jsonObj.put("gender", gender);
+                jsonObj.put("hair_len", hair_len);
+                String jsonStr = jsonObj.toString();
+                Callback callback = new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String hids = response.body().string();
+                        a.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.cleanData();
+                                mAdapter.parseHaircutString(hids);
+                            }
+                        });
+
+                    }
+                };
+                HttpUtil.postJSON(HttpConstants.GET_SEARCH_RESULT, jsonStr,
+                        callback);
+            } catch (JSONException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

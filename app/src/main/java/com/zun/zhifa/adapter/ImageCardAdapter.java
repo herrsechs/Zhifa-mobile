@@ -54,6 +54,23 @@ public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.View
         }
     }
 
+    public void cleanData(){
+        mHaircutIds.clear();
+        mHaircutIds = new ArrayList<>();
+    }
+
+    public void parseHaircutString(String str) {
+        try {
+            JSONArray jsonArr = new JSONArray(str);
+            for (int i = 0; i < jsonArr.length(); i++) {
+                mHaircutIds.add(jsonArr.getInt(i));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        notifyDataSetChanged();
+    }
+
     public ImageCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_image_card_view, parent, false);
 
