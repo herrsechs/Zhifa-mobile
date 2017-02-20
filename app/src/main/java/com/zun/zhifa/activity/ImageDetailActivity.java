@@ -111,7 +111,10 @@ public class ImageDetailActivity extends AppCompatActivity {
     View.OnClickListener commentBtnLstnr = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent intent = new Intent(ImageDetailActivity.this,
+                    UserCommentActivity.class);
+            intent.putExtra(IMAGE_RES_ID, hair_id);
+            startActivity(intent);
         }
     };
 

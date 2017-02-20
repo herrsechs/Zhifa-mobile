@@ -22,4 +22,5 @@ public class HttpConstants {
     public static final String GET_IMG_COMMENT = SERVER + "/social/get_img_comment";
     public static final String GET_HAIRCUT_INFO = SERVER + "/img/get_haircut_info/";
     public static final String FOLLOW = SERVER + "/social/follow/";
+    public static final String COMMENT = SERVER + "/social/comment/";
 }

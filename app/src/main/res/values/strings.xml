@@ -23,6 +23,7 @@
     <string name="profile_user_fan">粉丝</string>
     <string name="profile_user_haircut">发型</string>
     <string name="search_hint">搜索发型</string>
+    <string name="user_comment_hint">编写评论。。。</string>
 
     <string name="barber_upload_confirm">上传</string>
     <string name="barber_upload_redo">相册</string>
